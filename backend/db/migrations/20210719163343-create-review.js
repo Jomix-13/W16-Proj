@@ -20,7 +20,8 @@ module.exports = {
       },
       rating: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        validate: {min:1,max:5}
       },
       answer: {
         allowNull: false,
