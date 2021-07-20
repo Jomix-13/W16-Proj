@@ -1,0 +1,61 @@
+.topnav {
+    background-color: rgb(126, 86, 86);
+    overflow: hidden;
+  }
+
+.topnav a {
+    float: left;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #e6da3b;
+    color: rgb(212, 134, 134);
+}
+
+.topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+input {
+    /* width: 100%; */
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+input :focus{
+    background-color: #ddd;
+    outline: none;
+  }
+
+button {
+    background-color: #0704aa;
+    font-weight:bold;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor:progress;
+    width: 100%;
+    opacity: 0.9;
+}
+button:hover {
+    opacity:1;
+}
+  
