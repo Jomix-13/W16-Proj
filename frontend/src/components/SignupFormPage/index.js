@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -14,6 +14,15 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  
+  useEffect(()=>{
+    const errorHandler=[]
+    if(username.length < 4||username.length > 14) errorHandler.push('Username must be between 4 & 14 cahracters')
+    if(password.length < 6||password.length > 21) errorHandler.push('Password must be between 6 & 21 cahracters')
+    if(!email.length) errorHandler.push('Please enter your email')
+    setErrors(errorHandler)
+  },[username,password,email])
+  
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
@@ -37,6 +46,7 @@ function SignupFormPage() {
       <label className='signupLable'>
         Email
         <input
+          placeholder="Email"
           className='signupInput'
           type="text"
           value={email}
@@ -47,6 +57,7 @@ function SignupFormPage() {
       <label className='signupLable'>
         Username
         <input
+          placeholder="Username"
           className='signupInput'
           type="text"
           value={username}
@@ -57,6 +68,7 @@ function SignupFormPage() {
       <label className='signupLable'>
         Password
         <input
+          placeholder="Password"
           className='signupInput'
           type="password"
           value={password}
@@ -67,6 +79,7 @@ function SignupFormPage() {
       <label className='signupLable'>
         Confirm Password
         <input
+          placeholder="Confirm Password"
           className='signupInput'
           type="password"
           value={confirmPassword}
@@ -74,7 +87,12 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button 
+        // disabled={errors.length ? true : false}
+        hidden={errors.length ? true : false}
+        type="submit">
+          Sign Up
+      </button>
     </form>
   );
 }

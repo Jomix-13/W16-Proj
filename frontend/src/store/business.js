@@ -30,7 +30,6 @@ export const SingleBusinesses = (id) => async dispatch => {
   
     const response = await fetch(`/api/${id}`);
     console.log(response)
-    console.log("we re inside single busniess")
   
     if (response.ok) {
       const business = await response.json();
@@ -55,9 +54,10 @@ export const SingleBusinesses = (id) => async dispatch => {
       }
       case ONE_BUSINESS:{
         console.log("ONe business inside reducer")
-        let newState;
-        const business = newState.list.map(id => newState[id])
-        business.push(action.business);
+        let newState={...state}
+        // const business = newState.list.map(id => newState[id])
+        // business.push(action.business);
+        newState[action.business.id] = action.business
         return newState;
       };
 

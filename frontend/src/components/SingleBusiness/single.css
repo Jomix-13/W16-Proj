@@ -1,0 +1,24 @@
+.title{
+    font-size:4em;
+    text-decoration: underline;
+}
+
+.type{
+    font-size:2em;
+}
+
+.address{
+
+}
+
+.reviews{
+    font-size:2em;
+    text-decoration: underline;
+
+}
+
+.busimage{
+    height: 300px;
+    width: 500px;
+    padding: 10px;
+}

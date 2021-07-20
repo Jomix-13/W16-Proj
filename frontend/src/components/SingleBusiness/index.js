@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom'
 import {SingleBusinesses} from '../../store/business'
 import {getBusinesses} from '../../store/business'
 
-// import {Review} from '../../../../backend/db/models';
+// import {User} from '../../../../backend/db/models';
 
 import './single.css';
 
@@ -13,7 +13,7 @@ function OneBusiness(){
     const dispatch = useDispatch()
     const {businessId} = useParams()
 
-    
+    const sessionUser = useSelector((state) => state.session.user);
 
     const businesses = useSelector(state => Object.values(state.businesses));
     // console.log("********", businesses);
@@ -36,15 +36,15 @@ function OneBusiness(){
         {!!business &&(
         <div>
 
-         <ul>{business.title}</ul>
-            <li>{business.description}</li>
-            <li>{business.address}</li>
-            <li>{business.city},{business.state}.{business.zipCode}</li>
-            <img className='image' src={`/images/${business.title}.jpeg`}></img>
-            {!!business.reviews && business.review.map(business => (
+         <ul className='title'>{business.title}</ul>
+            <ul className='type'>{business.description}</ul>
+            <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
+            <img className='busimage' src={`/images/${business.title}.jpeg`}></img>
+            <div aria-hidden={business.Reviews ? true : false}>No reviews available</div>
+            {!!business.Reviews && business.Reviews.map(review => (
                 <div>
-                    <ul>{business.reviews.answer}</ul>       
-                    <li>{business.reviews.rating} ⭐️</li>   
+                <div  className='reviews' key={business.id}>Reviews</div>
+                    <ul>{review.userId} :{review.answer} -- {review.rating} ⭐️</ul>        
                 </div>
                 ))}
         </div>

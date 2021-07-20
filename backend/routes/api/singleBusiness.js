@@ -12,11 +12,12 @@ router.get(
         async (req, res) => {
           const id = req.params.businessId
           const business = await Business.findByPk(id,{
-              include: [{
-                  model: Review,
-                  attributes:['rating', 'answer'],
-                  through:{attributes:[]}
-              }]
+              include:Review
+            //   include: [{
+            //       model: Review,
+            //       attributes:['rating', 'answer'],
+            //       through:{attributes:[]}
+            //   }]
           });
           return await res.json(business);
     })

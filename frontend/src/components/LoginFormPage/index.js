@@ -12,7 +12,6 @@ function LoginFormPage() {
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
-  const [Demo, setDemo] = useState([]);
 
 
 useEffect(()=>{
@@ -36,6 +35,17 @@ useEffect(()=>{
       });
   }
 
+  const demoHandler = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.loginUser(
+      { credential:'Demo', password:'demo' }))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ul className='error'>
@@ -45,6 +55,7 @@ useEffect(()=>{
         <label className='loginLable'>
           Username or Email
           <input
+            placeholder="Username or Email"
             className='loginInput'
             type="text"
             value={credential}
@@ -57,6 +68,7 @@ useEffect(()=>{
         <label className='loginLable'>
           Password
           <input
+            placeholder="Password"
             className='loginInput'
             type="password"
             value={password}
@@ -71,9 +83,7 @@ useEffect(()=>{
         Log In
       </button>
       {/* <button type="submit">Demo User</button> */}
-      {/* <button type="submit" value>
-        Demo User
-      </button> */}
+      <button type="button" onClick={demoHandler}>Demo User</button>
     </form>
   );
 }
