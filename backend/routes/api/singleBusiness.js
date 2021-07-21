@@ -6,6 +6,18 @@ const asyncHandler = require('express-async-handler');
 const { Business } = require('../../db/models');
 const { Review } = require('../../db/models');
 
+
+router.get(
+    '/',
+    asyncHandler(
+        async (req, res) => {
+          const id = req.params.businessId
+          const business = await Business.findByPk(id,{
+              include:Review
+          });
+          return await res.json(business);
+    })
+);
 router.get(
     '/:businessId',
     asyncHandler(

@@ -27,7 +27,6 @@ function Navigation({ isLoaded }){
       <ul>
         <NavLink to="/signup">Sign Up</NavLink>
       </ul>
-
       </>
     );
   }
