@@ -11,9 +11,7 @@ router.get(
     asyncHandler(
         async (req, res) => {
           const businesses = await Business.findAll(
-            // { include: [{ model: Review }] }
             );
-            // console.log("********", businesses);
             return await res.json(businesses);
         })
 );

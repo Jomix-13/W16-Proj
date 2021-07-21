@@ -22,6 +22,15 @@ router.get(
           return await res.json(business);
     })
 );
+router.get(
+    '/:reviewId',
+    asyncHandler(
+        async (req, res) => {
+          const reviewId = req.params.reviewId
+          const reviw = await Review.findByPk(reviewId);
+          return await res.json(reviw);
+    })
+);
 
 
 module.exports = router;
