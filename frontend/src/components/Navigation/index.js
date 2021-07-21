@@ -2,11 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+// import { useDispatch } from 'react-redux';
+// import * as sessionActions from '../../store/session';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
+  // const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-
+  // const logout = (e) => {
+  //   e.preventDefault();
+  //   dispatch(sessionActions.logoutUser());
+  // };
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -21,6 +27,7 @@ function Navigation({ isLoaded }){
       <ul>
         <NavLink to="/signup">Sign Up</NavLink>
       </ul>
+
       </>
     );
   }
@@ -31,9 +38,12 @@ function Navigation({ isLoaded }){
       <ul>
         <NavLink exact to="/">Home</NavLink>
       </ul>
-        {isLoaded && sessionLinks}
-      <input type="text" placeholder="Search..">
+      {/* <ul>
+          <button onClick={logout}>Log Out</button>
+      </ul> */}
+            <input type="text" placeholder="Search..">
       </input>
+        {isLoaded && sessionLinks}
     </div>
     </>
   );

@@ -27,7 +27,8 @@ function OneBusiness(){
     
     useEffect(() => {
         const errorHandler=[]
-        if(!review || review.length < 10) errorHandler.push('Please enter your review')
+        if(!review) errorHandler.push('Please enter your review')
+        if(review.length < 10) errorHandler.push('Your review needs to be more than 10 charachters')
         if(rating < 0 || rating > 5 || !rating ) errorHandler.push('Rating value must be NUMBER between 1-5')
         //   || typeof(rating) !== 'number'
         setErrors(errorHandler)
@@ -51,7 +52,7 @@ function OneBusiness(){
          <ul className='title'>{business.title}</ul>
             <ul className='type'>{business.description}</ul>
             <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
-            <img className='busimage' src={`/images/${business.title}.jpeg`}></img>
+            <img className='busimage' src={`/images/${business.title}.jpeg`} alt=''></img>
             <div hidden={business.Reviews ? true : false}>No reviews available</div>
                                                     <form 
                                                       hidden={sessionUser? false : true}

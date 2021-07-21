@@ -1,3 +1,6 @@
+import {csrfFetch} from './csrf'
+
+
 const ADD_REVIEW = 'add review'
 const DELETE_REVIEW = 'delete review'
 //action creator
@@ -10,7 +13,7 @@ const remove = () =>({
 })
 //thunk
 export const addReview =(review) => async (dispatch) =>{
-    const response = await fetch(`/api/business`,
+    const response = await csrfFetch(`/api/business`,
     {method:'POST',
     headers:{'Content-Type' : 'application/json'},
     body: JSON.stringify(review)
@@ -23,7 +26,7 @@ export const addReview =(review) => async (dispatch) =>{
     }
 }
 export const DeleteReview = (review) => async dispatch => {
-    const response = await fetch(`/api/business/${review.id}`,{
+    const response = await csrfFetch(`/api/business/${review.id}`,{
       method:'DELETE',
       headers:{'Content-Type' : 'application/json'},
       body: JSON.stringify(review)

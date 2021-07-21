@@ -3,7 +3,7 @@
     display: grid;
     grid-column:auto;
     grid-row:auto;
-    grid-gap: 50px;
+    grid-gap: 5px;
 }
 
 .PARTO {
@@ -18,12 +18,12 @@
 
 .yummy {
   grid-column-start: 3;
-  grid-column-end: 3;
+  grid-column-end: 4;
 }
 
 .image{
   height: 100px;
-  width: 200;
+  width: 2000;
 }
 
 *{
