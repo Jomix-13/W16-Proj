@@ -13,7 +13,8 @@ function OneBusiness(){
     const {businessId} = useParams()
      
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(sessionUser)
+
+    
     const businesses = useSelector(state => Object.values(state.businesses));
     
     const business = businesses.find(business => business.id === Number(businessId))
