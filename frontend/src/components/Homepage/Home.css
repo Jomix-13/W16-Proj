@@ -1,11 +1,11 @@
 
 .grid-container {
     display: grid;
-    grid-column:auto;
+    grid-template-columns:1fr 1fr 1fr;
     grid-row:auto;
     grid-gap: 25px 5px;
 }
-
+/* 
 .PARTO {
     grid-column-start: 1;
     grid-column-end: 2;
@@ -19,7 +19,7 @@
 .yummy {
   grid-column-start: 3;
   grid-column-end: 4;
-}
+} */
 
 .image{
   height: 100px;
