@@ -4,11 +4,13 @@ import {useHistory, useParams} from 'react-router-dom'
 
 import {SingleBusinesses} from '../../store/business'
 import {getBusinesses} from '../../store/business'
-import {getUsers} from '../../store/reviews'
+import {DeleteReview} from '../../store/business'
+import {addReview} from '../../store/business'
+// import {getUsers} from '../../store/reviews'
 import EditReviewForm from './EditReviewForm'
 
 
-import * as reviewActions from '../../store/reviews'
+// import * as reviewActions from '../../store/reviews'
 import './single.css';
 
 function OneBusiness(){
@@ -25,6 +27,10 @@ function OneBusiness(){
     
     const business = businesses.find(business => business.id === Number(businessId))
     // console.log(business)
+    // const rereviews = business?.Reviews
+
+    // const rereview = rereviews.find(rerview => rerview.id === review.id)
+    // const postusername = rereview.User.username
 
     
     
@@ -45,31 +51,35 @@ function OneBusiness(){
       setErrors(errorHandler)
     },[review, rating])
     
+    
     useEffect(() => {
       setShowEditReviewForm(false)
       dispatch(SingleBusinesses(businessId))
       dispatch(getBusinesses())
-      dispatch(reviewActions.DeleteReview(review))
-      dispatch(getUsers())
-      let content = null;
+      dispatch(DeleteReview(review))
+      // dispatch(getUsers())
       if (showEditReviewForm) {
+        let content = null;
         content = (
           <EditReviewForm review={review} hideForm={() => setShowEditReviewForm(false)} />
       )}
     },[dispatch, businessId])
     
     function formHandeler(e){
+        e.preventDefault()
         const userId = sessionUser.id
-        return dispatch(reviewActions.addReview({ review, rating, businessId , userId}))
+        setReview('')
+        setRating('')
+        return dispatch(addReview({ review, rating, businessId , userId}))
       }
 
-      function DeleteHandeler(e){
-        e.preventDefault();
-        console.log('we are inside delete handler')
-        return 
-        // history.push('./business')
-        // return
-      }
+      // function DeleteHandeler(e){
+      //   e.preventDefault();
+      //   // console.log('we are inside delete handler')
+      //   return 
+      //   // history.push('./business')
+      //   // return
+      // }
 
   return(
     <>
@@ -118,13 +128,13 @@ function OneBusiness(){
         <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
         {!!business.Reviews && business.Reviews.map(review => (
           <div key={review.id}>
-            <ul>{business?.Reviews?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
+            <ul> :{review.answer} -- {review.rating} ⭐️</ul>
             {sessionUser && sessionUser.id === review.userId && (    
               <div className='container'>
                 <button 
                 // type='Submit'
                 type='button'
-                onClick={() => dispatch(reviewActions.DeleteReview(review))}
+                onClick={() => dispatch(DeleteReview(review))}
                 // onSubmit={DeleteHandeler}
                 className='small'>
                 Delete review
@@ -135,6 +145,7 @@ function OneBusiness(){
                 className='small'>
                 Edit review
                 </button>
+                  <EditReviewForm></EditReviewForm>
               </div>
             )} 
           </div>

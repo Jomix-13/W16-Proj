@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SingleBusinesses } from '../../store/business';
-import {EditReview} from '../../store/reviews'
+import {EditReview} from '../../store/business'
 
-const EditReviewForm = ({ review, hideForm }) => {
+const EditReviewForm = ({ revieww, hideForm }) => {
   const dispatch = useDispatch();
 
-  const [answer,setAnswer] = useState(review.answer)
-  const [rating,setRating] = useState(review.rating)
+  const [review,setReview] = useState(revieww?.answer)
+  const [rating,setRating] = useState(revieww?.rating)
 
 
   useEffect(() => {
@@ -17,7 +17,13 @@ const EditReviewForm = ({ review, hideForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let updatedReview = await dispatch(EditReview({review,rating}));
+
+    const payload = {
+      review,
+      rating,
+    };
+
+    let updatedReview = await dispatch(EditReview(payload));
     if (updatedReview) {
       hideForm();
     }
@@ -35,8 +41,8 @@ const EditReviewForm = ({ review, hideForm }) => {
       placeholder="place your review here.."
       className='signupInput'
       type="text"
-      value={answer}
-      onChange={(e) => setAnswer(e.target.value)}
+      value={review}
+      onChange={(e) => setReview(e.target.value)}
       />
       <input
       placeholder="1 - 5"
