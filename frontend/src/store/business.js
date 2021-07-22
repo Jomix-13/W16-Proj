@@ -40,11 +40,11 @@ export const getBusinesses = () => async dispatch => {
   };
 
 export const SingleBusinesses = (businessId) => async dispatch => {
-  
     const response = await fetch(`/api/business/${businessId}`);
   
     if (response.ok) {
       const business = await response.json();
+      console.log('<><><<><',business)
       dispatch(oneBusiness(business));
       return business
     }

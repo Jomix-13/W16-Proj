@@ -14,14 +14,15 @@ router.get(
     async (req, res) => {
       const id = req.params.businessId
       const business = await Business.findByPk(id,{
-        include:{all:true}
+        include:
+        // {all:true}
           // Review
-        // {
-        //   model: Review,
-        //   include: {
-        //     model: User,
-        //   }
-        // }
+        {
+          model: Review,
+          include: {
+            model: User,
+          }
+        }
       });
     return await res.json(business);
   })

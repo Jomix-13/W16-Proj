@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SingleBusinesses } from '../../store/business';
+// import { SingleBusinesses } from '../../store/business';
 import {EditReview} from '../../store/business'
 
 const EditReviewForm = ({ revieww, hideForm }) => {
@@ -11,12 +11,12 @@ const EditReviewForm = ({ revieww, hideForm }) => {
   const [rating,setRating] = useState(revieww?.rating)
 
 
-  useEffect(() => {
-    dispatch(SingleBusinesses());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(SingleBusinesses());
+  // }, [dispatch]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const payload = {
       review,
@@ -25,13 +25,13 @@ const EditReviewForm = ({ revieww, hideForm }) => {
 
     let updatedReview = await dispatch(EditReview(payload));
     if (updatedReview) {
-      hideForm();
+      hideForm(false);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    hideForm();
+    hideForm(false);
   };
 
   return (
@@ -52,7 +52,7 @@ const EditReviewForm = ({ revieww, hideForm }) => {
       value={rating}
       onChange={(e) => setRating(e.target.value)}
       />
-        <button type="submit">Update Pokemon</button>
+        <button type="submit">Update Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
