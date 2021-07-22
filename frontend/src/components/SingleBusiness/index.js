@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
 
 import {SingleBusinesses} from '../../store/business'
 import {getBusinesses} from '../../store/business'
+import {getUsers} from '../../store/reviews'
+import EditReviewForm from './EditReviewForm'
 
 
 import * as reviewActions from '../../store/reviews'
@@ -14,20 +16,22 @@ function OneBusiness(){
     const {businessId} = useParams()
      
     const sessionUser = useSelector((state) => state.session.user);
-    
-    
     const businesses = useSelector(state => Object.values(state.businesses));
     
+    // const users = useSelector(state => Object.values(state.users));
+    // console.log(users)
+    
+  const history = useHistory()
+    
     const business = businesses.find(business => business.id === Number(businessId))
-    console.log(business)
+    // console.log(business)
 
-    const reviwwwwes = Object.assign({},business?.Reviews)
-    console.log(reviwwwwes)
     
     
     const [review,setReview] = useState('')
     const [rating,setRating] = useState('')
     const [errors,setErrors] = useState('')
+    const [showEditReviewForm,setShowEditReviewForm] = useState(false)
     
     
     
@@ -42,94 +46,103 @@ function OneBusiness(){
     },[review, rating])
     
     useEffect(() => {
+      setShowEditReviewForm(false)
       dispatch(SingleBusinesses(businessId))
       dispatch(getBusinesses())
+      dispatch(reviewActions.DeleteReview(review))
+      dispatch(getUsers())
+      let content = null;
+      if (showEditReviewForm) {
+        content = (
+          <EditReviewForm review={review} hideForm={() => setShowEditReviewForm(false)} />
+      )}
     },[dispatch, businessId])
     
-    function formHandel(e){
+    function formHandeler(e){
         const userId = sessionUser.id
-
-        // review = ''
-        // rating = ''
         return dispatch(reviewActions.addReview({ review, rating, businessId , userId}))
       }
-    return(
-        <>
-        {!!business &&(
-        <div>
 
-         <ul className='title'>{business.title}</ul>
-            <ul className='type'>{business.description}</ul>
-            <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
-            <img className='busimage' src={`/images/${business.title}.jpeg`} alt=''></img>
-                        <form 
-                          hidden={sessionUser? false : true}
-                          onSubmit={formHandel}
-                        >
-                      <ul 
-                      className='errors'
-                      >
-                          {!!errors && errors.map(error=>(
-                              <li key={error}>{error}</li>
-                          ))}
-                      </ul>
-                      <label className='reviewLable'>
-                        Review
-                        <input
-                          placeholder="place your review here.."
-                          className='signupInput'
-                          type="text"
-                          value={review}
-                          onChange={(e) => setReview(e.target.value)}
-                        />
-                      </label>
-                      <label className='reviewLable'>
-                        Rating
-                        <input
-                          placeholder="1 - 5"
-                          className='reviewInput'
-                          type="number"
-                          max='5'
-                          value={rating}
-                          onChange={(e) => setRating(e.target.value)}
-                        />
-                      </label>
-                      <button
-                        disabled={errors.length ? true : false}
-                        type="submit"
-                      >
-                          Add Review</button>
-                        
-                        </form>
-             
-             <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>
-             <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
-             {/* <div hidden={business.Reviews ? true : false}>No reviews available</div> */}
-            {!!business.Reviews && business.Reviews.map(review => (
-              <div  className='o' key={review.id}>
-                    <ul>{business?.Reviews?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
+      function DeleteHandeler(e){
+        e.preventDefault();
+        console.log('we are inside delete handler')
+        return 
+        // history.push('./business')
+        // return
+      }
+
+  return(
+    <>
+      {!!business &&(
+        <div>
+          <ul className='title'>{business.title}</ul>
+          <ul className='type'>{business.description}</ul>
+          <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
+          <img className='busimage' src={`/images/${business.title}.jpeg`} alt=''></img>
+          <form 
+          hidden={sessionUser? false : true}
+          onSubmit={formHandeler}
+          >
+            <ul className='errors'>
+            {!!errors && errors.map(error=>(
+                <li key={error}>{error}</li>
+            ))}
+            </ul>
+              <label className='reviewLable'>Review
+               <input
+                placeholder="place your review here.."
+                className='signupInput'
+                type="text"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+                />
+              </label>
+              <label className='reviewLable'>Rating
+                <input
+                placeholder="1 - 5"
+                className='reviewInput'
+                type="number"
+                max='5'
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                />
+              </label>
+              <button
+              disabled={errors.length ? true : false}
+              type="submit"
+              >
+              Add Review</button>
+          </form>
+
+        <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>
+        <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
+        {!!business.Reviews && business.Reviews.map(review => (
+          <div key={review.id}>
+            <ul>{business?.Reviews?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
             {sessionUser && sessionUser.id === review.userId && (    
-            <div className='container'>
+              <div className='container'>
                 <button 
-                className='2'
-                // hidden={!!sessionUser && sessionUser.id === review.userId ? false : true}
+                // type='Submit'
+                type='button'
+                onClick={() => dispatch(reviewActions.DeleteReview(review))}
+                // onSubmit={DeleteHandeler}
                 className='small'>
-                    Delete review
+                Delete review
                 </button>
+
                 <button 
-                className='3'
-                // hidden={!!sessionUser && sessionUser.id === review.userId ? false : true}
+                onClick={() => setShowEditReviewForm(true)}
                 className='small'>
-                    Edit review
+                Edit review
                 </button>
-            </div>
-                )} 
+              </div>
+            )} 
           </div>
-                ))}
+        ))}
         </div>
-        )}
-        </>
-    )
+      )}
+    </>
+  )
 }
 
 export default OneBusiness

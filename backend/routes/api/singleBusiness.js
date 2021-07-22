@@ -36,13 +36,16 @@ router.post(
         return await res.json(newReview);
   })
 );
-      router.delete(
-    '/:reviewId',
+  router.delete(
+    '/:id',
     asyncHandler(
         async (req, res) => {
-          const reviewId = req.params.reviewId
-          const reviw = await Review.findByPk(reviewId);
-          return await res.json(reviw);
+          const id = req.params.id
+          // const {id} = req.params  WHAT IS THE DIFF
+          await Review.destroy({
+            where: {id}
+          })
+          return await res.json({message : 'Review deleted'});
     })
 );
 
