@@ -16,26 +16,15 @@ function OneBusiness(){
      
     const sessionUser = useSelector((state) => state.session.user);
     const businesses = useSelector(state => Object.values(state.businesses));
-    
-    
-
-    
+      
     const business = businesses.find(business => business.id === Number(businessId))
-    console.log(business)
-    // const rereviews = business?.Reviews
 
-    // const rereview = rereviews.find(rerview => rerview.id === review.id)
-    // const postusername = rereview.User.username
-
-    
-    
-    const [review,setReview] = useState('')
-    const [rating,setRating] = useState('')
+    const [review,setReview] = useState('Please tell us your experience')
+    const [rating,setRating] = useState(5)
     const [errors,setErrors] = useState('')    
     
     useEffect(() => {
       dispatch(SingleBusinesses(businessId))
-      // dispatch(getBusinesses())
     },[dispatch, businessId])
     
     useEffect(() => {
@@ -46,13 +35,11 @@ function OneBusiness(){
       setErrors(errorHandler)
     },[review, rating])
     
-    
-    
     function formHandeler(e){
         e.preventDefault()
         const userId = sessionUser.id
-        setReview('')
-        setRating('')
+        setReview('Please tell us your experience')
+        setRating(5)
         return dispatch(addReview({ review, rating, businessId , userId}))
       }
 

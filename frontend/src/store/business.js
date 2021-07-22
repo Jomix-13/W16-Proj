@@ -6,6 +6,7 @@ const GET_BUSINESSES= 'buiness/GET_BUSINESSES'
 const ONE_BUSINESS= 'business/ONE_BUSINESS'
 const ADD_REVIEW = 'add review'
 const DELETE_REVIEW = 'delete review'
+const EDIT_REVIEW = 'delete review'
 
 //action creator
 const pullBusinesses = list => ({
@@ -25,6 +26,10 @@ const oneBusiness = business => ({
 
 const remove = (review) =>({
     type: DELETE_REVIEW,
+    review,
+})
+const edit = (review) =>({
+    type: EDIT_REVIEW,
     review,
 })
 
@@ -128,6 +133,11 @@ export const EditReview =({review,rating}) => async (dispatch) =>{
         // console.log(action.review)
         return newState;
       }
+      // case EDIT_REVIEW:{
+      //   const newState = { ...state };
+      //   const business = newState[action.review.businessId];
+      //   const reviews = business.Reviews
+      // }
       default:
         return state;
     }

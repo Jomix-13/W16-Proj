@@ -15,8 +15,6 @@ router.get(
       const id = req.params.businessId
       const business = await Business.findByPk(id,{
         include:
-        // {all:true}
-          // Review
         {
           model: Review,
           include: {
@@ -33,8 +31,14 @@ router.post(
       async (req, res) => {
         // const id = req.params.businessId
         const {review,rating,businessId,userId} = req.body
-        const newReview = await Review.create({answer:review,rating,businessId,userId})
-        return await res.json(newReview);
+        let newReview = await Review.create({answer:review,rating,businessId,userId})
+        newReview = newReview.toJSON()
+        const reNewReview = await Review.findByPk(newReview.id,{
+          include: User,
+        });
+        console.log('hhhhhhhhhhhhh', newReview.id)
+        console.log('hhhhhhhhhhhhh', reNewReview)
+        return res.json(reNewReview);
   })
 );
   router.delete(
@@ -42,7 +46,6 @@ router.post(
     asyncHandler(
         async (req, res) => {
           const id = req.params.id
-          // const {id} = req.params  WHAT IS THE DIFF
           await Review.destroy({
             where: {id}
           })
