@@ -19,9 +19,11 @@ const EditReviewForm = ({ revieww, hideForm }) => {
     setErrors(errorHandler)
   },[review, rating])
 
+  const id = revieww.id
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      id,
       review,
       rating,
     };

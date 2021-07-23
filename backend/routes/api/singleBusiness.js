@@ -36,8 +36,6 @@ router.post(
         const reNewReview = await Review.findByPk(newReview.id,{
           include: User,
         });
-        console.log('hhhhhhhhhhhhh', newReview.id)
-        console.log('hhhhhhhhhhhhh', reNewReview)
         return res.json(reNewReview);
   })
 );
@@ -50,6 +48,16 @@ router.post(
             where: {id}
           })
           return await res.json({message : 'Review deleted'});
+    })
+);
+  router.put(
+    '/:id',
+    asyncHandler(
+        async (req, res) => {
+          const id = await parseInt(req.params.reviewId)
+          const review = await Review.findByPk(id)
+          await review.update({ review: req.body.review, rating: req.body.rating });
+          return await res.json({review});
     })
 );
 

@@ -89,7 +89,7 @@ function OneBusiness(){
         <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>
         <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
         {business.Reviews.length > 0 && business.Reviews.map(review => (
-          <SingelReview review={review}></SingelReview>
+          <SingelReview key={review.id} review={review}></SingelReview>
         ))}
         </div>
       )}

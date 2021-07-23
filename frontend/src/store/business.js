@@ -49,7 +49,6 @@ export const SingleBusinesses = (businessId) => async dispatch => {
   
     if (response.ok) {
       const business = await response.json();
-      console.log('<><><<><',business)
       dispatch(oneBusiness(business));
       return business
     }
@@ -68,20 +67,24 @@ export const addReview =({review,rating,businessId,userId}) => async (dispatch) 
   }
 }
 export const DeleteReview = (review) => async dispatch => {
-  // console.log('>>>>>>>>>>>>>>>>>>',review)
-    const response = await csrfFetch(`/api/business/${review.id}`,{
-      method:'DELETE',
-      headers:{'Content-Type' : 'application/json'},
-      body: JSON.stringify(review)
-    });
-    if (response.ok) {
-      await response.json();
-      dispatch(remove(review));
-      return review
-    }
+  // console.log('>>>>>>>>>>>>>>>>>>|||||',review)
+
+  const response = await csrfFetch(`/api/business/${review.id}`,{
+    method:'DELETE',
+    headers:{'Content-Type' : 'application/json'},
+    body: JSON.stringify(review)
+  });
+  if (response.ok) {
+    await response.json();
+    dispatch(remove(review));
+    return review
+  }
 };
 
-export const EditReview =({review,rating}) => async (dispatch) =>{
+export const EditReview = (review) => async (dispatch) =>{
+  
+  // console.log('>>>>>>>>>>>>>>>>>>',review)
+
   const response = await csrfFetch(`/api/business/${review.id}`,
   {method:'PUT',
   headers:{'Content-Type' : 'application/json'},
@@ -90,7 +93,7 @@ export const EditReview =({review,rating}) => async (dispatch) =>{
   
   if (response.ok) {
     const review = await response.json();
-    dispatch(add(review));
+    dispatch(edit(review));
     return review
   }
 }
@@ -118,7 +121,7 @@ export const EditReview =({review,rating}) => async (dispatch) =>{
         const reviews = business.Reviews
         let restReview = reviews.push(action.review)
         // delete newState[review];
-        console.log(newState)
+        // console.log(newState)
         // console.log(action.review)
         return newState;
       }
@@ -133,11 +136,13 @@ export const EditReview =({review,rating}) => async (dispatch) =>{
         // console.log(action.review)
         return newState;
       }
-      // case EDIT_REVIEW:{
-      //   const newState = { ...state };
-      //   const business = newState[action.review.businessId];
-      //   const reviews = business.Reviews
-      // }
+      case EDIT_REVIEW:{
+        const newState = { ...state };
+        const business = newState[action.review.businessId];
+        const reviews = business.Reviews
+        const oneReview = reviews.find(review=> review.id)
+        return oneReview
+      }
       default:
         return state;
     }
