@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from  './components/Homepage'
 import OneBusiness from  './components/SingleBusiness'
+import NewBusinessForm from  './components/NewBusinessForm'
+import UpdateBusinessForm from  './components/UpdateBusinessForm'
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const {businessId} = useParams()
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -28,6 +32,13 @@ function App() {
           </Route>
           <Route exact path='/'>
             <HomePage></HomePage>
+          </Route>
+          <Route path={`/new`}>
+            <NewBusinessForm></NewBusinessForm>
+          </Route>
+          {/* <Route path={`/update/businessId`}> */}
+          <Route path={`/update`}>
+            <UpdateBusinessForm></UpdateBusinessForm>
           </Route>
           <Route path={`/:businessId`} >
             <OneBusiness></OneBusiness>

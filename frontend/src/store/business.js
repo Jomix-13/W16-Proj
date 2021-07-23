@@ -6,7 +6,7 @@ const GET_BUSINESSES= 'buiness/GET_BUSINESSES'
 const ONE_BUSINESS= 'business/ONE_BUSINESS'
 const ADD_REVIEW = 'add review'
 const DELETE_REVIEW = 'delete review'
-const EDIT_REVIEW = 'delete review'
+const EDIT_REVIEW = 'edit review'
 
 //action creator
 const pullBusinesses = list => ({
@@ -19,7 +19,7 @@ const oneBusiness = business => ({
     business,
   });
 
-  const add = (review) =>({
+const add = (review) =>({
     type: ADD_REVIEW,
     review,
 })
@@ -45,6 +45,7 @@ export const getBusinesses = () => async dispatch => {
   };
 
 export const SingleBusinesses = (businessId) => async dispatch => {
+
     const response = await fetch(`/api/business/${businessId}`);
   
     if (response.ok) {
@@ -92,7 +93,7 @@ export const EditReview = (review) => async (dispatch) =>{
   });
   
   if (response.ok) {
-    const review = await response.json();
+    await response.json();
     dispatch(edit(review));
     return review
   }
@@ -117,13 +118,23 @@ export const EditReview = (review) => async (dispatch) =>{
       };
       case ADD_REVIEW: {
         const newState = { ...state };
-        const business = newState[action.review.businessId];
-        const reviews = business.Reviews
-        let restReview = reviews.push(action.review)
+        // const business = newState[action.review.businessId];
+        // const reviews = business.Reviews
+        // let restReview = reviews.push(action.review)
         // delete newState[review];
-        // console.log(newState)
-        // console.log(action.review)
         return newState;
+      }
+      case EDIT_REVIEW:{
+        const newState = { ...state };
+        console.log('>>>>>>>>>>',newState)
+        let oneReview = newState[action.review];
+        console.log('>>>>>>>>>>1',[action.review])
+        oneReview = oneReview
+        // const reviews = business.Reviews
+        // console.log('>>>>>>>>>>2',reviews)
+        // const oneReview = reviews.find(review=> review.id)
+        // console.log('>>>>>>>>>>3',oneReview)
+        return newState
       }
       case DELETE_REVIEW: {
         const newState = { ...state };
@@ -132,16 +143,8 @@ export const EditReview = (review) => async (dispatch) =>{
         let restReview = reviews.filter(review=> review.id !== action.review.id)
         business.Reviews = restReview
         // delete newState[review];
-        // console.log(newState)
         // console.log(action.review)
         return newState;
-      }
-      case EDIT_REVIEW:{
-        const newState = { ...state };
-        const business = newState[action.review.businessId];
-        const reviews = business.Reviews
-        const oneReview = reviews.find(review=> review.id)
-        return oneReview
       }
       default:
         return state;

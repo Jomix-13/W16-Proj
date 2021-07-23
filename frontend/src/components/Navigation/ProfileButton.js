@@ -2,6 +2,9 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+
 import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
@@ -42,6 +45,7 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <ul><Link to={'/new'}> Add a buiness</Link></ul>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>

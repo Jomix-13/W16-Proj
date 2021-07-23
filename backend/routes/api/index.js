@@ -8,21 +8,23 @@ const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const businessesRouter = require('./businesses.js');
-const singleRouter = require('./singleBusiness');
+const singleRouter = require('./singleBusiness.js');
+const createRouter = require('./nweBusiness.js');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/feature', createRouter);
 router.use('/businesses', businessesRouter);
 router.use('/business', singleRouter);
 
 
 router.get(
-    '/restore-user',
-    restoreUser,
-    (req, res) => {
-      return res.json(req.user);
-    }
-  );
+  '/restore-user',
+  restoreUser,
+  (req, res) => {
+    return res.json(req.user);
+  }
+);
 
 router.get(
     '/require-auth',

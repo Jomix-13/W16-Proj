@@ -51,15 +51,16 @@ router.post(
     })
 );
   router.put(
-    '/:id',
+    '/:reviewId',
     asyncHandler(
         async (req, res) => {
           const id = await parseInt(req.params.reviewId)
-          const review = await Review.findByPk(id)
+          const review = await Review.findByPk(id,{
+            include: User,
+          })
           await review.update({ review: req.body.review, rating: req.body.rating });
           return await res.json({review});
     })
 );
-
 
 module.exports = router;

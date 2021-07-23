@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 
 import {SingleBusinesses} from '../../store/business'
 import {addReview} from '../../store/business'
 import SingelReview from '../SingleReview'
+import Singelbus from '../singlbus'
 
 
 // import * as reviewActions from '../../store/reviews'
@@ -15,8 +16,8 @@ function OneBusiness(){
     const {businessId} = useParams()
      
     const sessionUser = useSelector((state) => state.session.user);
-    const businesses = useSelector(state => Object.values(state.businesses));
-      
+
+    const businesses = useSelector(state => Object.values(state.businesses));  
     const business = businesses.find(business => business.id === Number(businessId))
 
     const [review,setReview] = useState('Please tell us your experience')
@@ -51,6 +52,7 @@ function OneBusiness(){
           <ul className='type'>{business.description}</ul>
           <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
           <img className='busimage' src={`/images/${business.title}.jpeg`} alt=''></img>
+          <Singelbus></Singelbus>
           <form 
           hidden={sessionUser? false : true}
           onSubmit={formHandeler}
