@@ -6,6 +6,8 @@ const asyncHandler = require('express-async-handler');
 const { Business,Review,User } = require('../../db/models');
 
 
+
+
 router.post(
   '/new',
   asyncHandler(
@@ -15,7 +17,12 @@ router.post(
         let newBusiness = await Business.create({ownerId,title,description,address,city,state,zipCode})
         newBusiness = newBusiness.toJSON()
         const reNewBusiness = await Business.findByPk(newBusiness.id,{
-          include: User,
+          include:
+          {
+            include: {
+              model: User,
+            }
+          }
         });
         return res.json(reNewBusiness);
   })

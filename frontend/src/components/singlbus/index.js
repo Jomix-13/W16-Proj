@@ -1,13 +1,14 @@
 import {useDispatch,useSelector} from 'react-redux'
 import {useState} from 'react'
-import * as NewBusiness from '../../store/newBusiness'
+import * as NewBusiness from '../../store/business'
 import EditReviewForm from '../SingleBusiness/EditReviewForm'
-import { Redirect, useParams } from 'react-router'
+import { Redirect, useHistory, useParams } from 'react-router'
 
-function Singelbus({review}){
+function Singelbus(){
 
     const dispatch = useDispatch()
     const {businessId} = useParams()
+    const history = useHistory()
 
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -21,8 +22,9 @@ function Singelbus({review}){
                     <button 
                     type='button'
                     onClick={
-                        () => dispatch(NewBusiness.DeleteBusiness(business))
-                        // ,window.location.href='/'
+                        () => {dispatch(NewBusiness.DeleteBusiness(business))
+                        history.push('/')
+                        }
                     }
                     className='small'>
                     Delete Business

@@ -17,6 +17,9 @@ router.get(
         include:
         {
           model: Review,
+          order: [
+            ['createdAt', 'DESC']
+        ],
           include: {
             model: User,
           }
@@ -55,10 +58,14 @@ router.post(
     asyncHandler(
         async (req, res) => {
           const id = await parseInt(req.params.reviewId)
-          const review = await Review.findByPk(id,{
-            include: User,
-          })
-          await review.update({ review: req.body.review, rating: req.body.rating });
+          const review = await Review.findByPk(id
+            // ,{include: User,}
+            )
+            console.log('**************************', review)
+            console.log('**************************', req.body)
+          await review.update( req.body
+            // {review: req.body.review, rating: req.body.rating}
+           );
           return await res.json({review});
     })
 );

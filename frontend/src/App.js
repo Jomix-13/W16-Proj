@@ -13,7 +13,7 @@ import UpdateBusinessForm from  './components/UpdateBusinessForm'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const {businessId} = useParams()
+  // const {businessId} = useParams()
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));

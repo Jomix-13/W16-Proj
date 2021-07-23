@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
-import * as NewBusiness from '../../store/newBusiness'
+import * as NewBusiness from '../../store/business'
 
 const STATES =[
     "AL",
@@ -69,6 +69,7 @@ function NewBusinessForm() {
     const [state, setState] = useState(STATES[0])
     const [zipCode, setZipCode] = useState('')
     const [errors, setErrors] = useState([])
+    // const [image, setImage] = useState([])
 
     useEffect(()=>{
         const errorHandler =[]
@@ -124,8 +125,8 @@ function NewBusinessForm() {
                 placeholder='entee image url'
                 className='signupInput'
                 type="text"
-                // value={description}
-                // onChange={(e) => setDescription(e.target.value)}
+                // src={image}
+                // onChange={(e) => setImage(e.target.value)}
                 />
             </label>
               
