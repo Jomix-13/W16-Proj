@@ -35,14 +35,14 @@ function App() {
           <Route exact path='/'>
             <HomePage></HomePage>
           </Route>
-          <Route path={`/new`}>
+          <Route path='/new'>
             <NewBusinessForm></NewBusinessForm>
           </Route>
-          {/* <Route path={`/update/businessId`}> */}
-          <Route path={`/update/:id`}>
+          {/* <Route path='/update'> */}
+          <Route path='/update/:id'>
             <UpdateBusinessForm ></UpdateBusinessForm>
           </Route>
-          <Route path={`/:businessId`} >
+          <Route path='/:businessId' >
             <OneBusiness></OneBusiness>
           </Route>
         </Switch>

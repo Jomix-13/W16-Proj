@@ -7,9 +7,9 @@ const ONE_BUSINESS= 'business/ONE_BUSINESS'
 const ADD_REVIEW = 'add review'
 const DELETE_REVIEW = 'delete review'
 const EDIT_REVIEW = 'edit review'
-const ADD_BUINESS ='add business'
-const DELETE_BUINESS = 'delete business'
-const EDIT_BUINESS = 'edit business'
+const ADD_BUSINESS ='add business'
+const DELETE_BUSINESS = 'delete business'
+const EDIT_BUSINESS = 'edit business'
 
 //action creator
 const pullBusinesses = list => ({
@@ -36,15 +36,15 @@ const editReview = (review) =>({
     review,
 })
 const add = (business) =>({
-  type: ADD_BUINESS,
+  type: ADD_BUSINESS,
   business,
 })
 const remove = (business) =>({
-  type: DELETE_BUINESS,
+  type: DELETE_BUSINESS,
   business,
 })
 const edit = (business) =>({
-  type: EDIT_BUINESS,
+  type: EDIT_BUSINESS,
   business,
 })
 
@@ -127,7 +127,6 @@ export const addBusiness =({ownerId,title,description,address,city,state,zipCode
 }
 
 export const DeleteBusiness = (business) => async dispatch => {
-
   const response = await csrfFetch(`/api/feature/${business.id}`,{
     method:'DELETE',
     headers:{'Content-Type' : 'application/json'},
@@ -144,97 +143,88 @@ export const DeleteBusiness = (business) => async dispatch => {
 
 export const EditBusiness = (business) => async (dispatch) =>{
 
-
-  const response = await csrfFetch(`/api/business/${business.id}`,
+  const response = await csrfFetch(`/api/business/update/${business.id}`,
   {method:'PUT',
   headers:{'Content-Type' : 'application/json'},
   body: JSON.stringify(business)
   });
   
   if (response.ok) {
-    await response.json();
-    dispatch(edit(business));
-    return business
+    const data = await response.json();
+    dispatch(edit(data));
+    return data
   }
 }
 
-
+const intialState = {
+    allBusinessess:[], // All Buinesses
+    oneBusiness:{}, // One Buiness
+  }
 
   //Reducer
-  const BusinessReducer = (state = {}, action) => {
+  const BusinessReducer = (state = intialState, action) => {
     
     switch (action.type) {
       case GET_BUSINESSES: {
-        const allBusinesses = {};
-        action.list.forEach(business => {
-            allBusinesses[business.id] = business;
-        });
         return {
-          ...allBusinesses,
           ...state,
+          allBusinessess:action.list,
         };
       }
       case ONE_BUSINESS:{
-        let newState={...state}
-        newState[action.business.id] = action.business
-        return newState;
+        return{
+          ...state,
+          oneBusiness:action.business,
+        };
       };
+      case ADD_BUSINESS: {
+        return {
+        ...state,
+        allBusinessess : [...state.allBusinessess, action.business],
+        };
+      }
+      case DELETE_BUSINESS: {
+        return {...state}
+      }
+      case EDIT_BUSINESS:{
+        console.log(action.business.business)
+        return {
+          ...state,
+          oneBusiness : action.business.business
+        };
+      }
       case ADD_REVIEW: {
-        const newState = { ...state };
-      newState[action.review.businessId] = { ...state[action.review.businessId], Reviews: state[action.review.businessId].Reviews.filter(({ id }) => id !== action.review.id) };
-      newState[action.review.businessId].Reviews.push(action.review);
-        return newState;
+        return {
+          ...state,
+          oneBusiness:{
+            Reviews: [action.review,...state.oneBusiness.Reviews]
+          }
+        }
       }
       case EDIT_REVIEW:{
-
-        const newState = { ...state };
-        const reviewsArr = newState[action.review.review.businessId].Reviews 
-        let re = reviewsArr.find(re => re.id === action.review.review.id)
-        // re = action.review.review
-        let index = reviewsArr.indexOf(re)
-        reviewsArr[index] = action.review.review
-        // newState[action.review.id] = action.review;
-        return newState;
-
-        // const newState = { ...state };
-      //  newState[action.review.id] = action.review;;
-        // oneReview = oneReview
-        // const reviews = business.Reviews
-        // const oneReview = reviews.find(review=> review.id)
-        // return newState
+        let allreviewsArr = state.oneBusiness.Reviews
+        let filteredReviews = allreviewsArr.filter(review=> review.id !== action.review.review.id)
+        return {
+          ...state,
+          oneBusiness:{
+            Reviews: [action.review.review,...filteredReviews]
+          }
+        }
       }
       case DELETE_REVIEW: {
-        const newState = { ...state };
-        const business = newState[action.review.businessId];
-        const reviews = business.Reviews
-        let restReview = reviews.filter(review=> review.id !== action.review.id)
-        business.Reviews = restReview
-        // delete newState[review];
-        return newState;
-      }
-      case ADD_BUINESS: {
-        const newState = { ...state };
-        newState[action.business.id] = action.business;
-        return newState;
-    }
-    case DELETE_BUINESS: {
-
-        const newState = { ...state };
-        // const business = newState[action.buiness];
-        delete newState[action.business.id];
-
-        return newState;
-    }
-    case EDIT_BUINESS:{
-        const newState = { ...state };
-        const business = newState[action.buiness];
-
-        return newState
+        let allreviewsArr = state.oneBusiness.Reviews
+        let filteredReviews = allreviewsArr.filter(review=> review.id !== action.review.id)
+        return {
+          ...state,
+          oneBusiness: {
+            Reviews:[...filteredReviews]
+          }
+        };
       }
       default:
         return state;
     }
   }
 
-  export default BusinessReducer
+export default BusinessReducer
 

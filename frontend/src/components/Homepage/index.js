@@ -11,15 +11,13 @@ import './Home.css';
 
 function HomePage(){
     const dispatch = useDispatch()
-
-
-    const businesses = useSelector(state => Object.values(state.businesses));
-
+    
+    
+    const businesses = useSelector(state => state.businesses.allBusinessess)
     
     useEffect(() => {
         dispatch(getBusinesses())
-      },[dispatch])
-
+      },[dispatch],businesses)
     return(
         <>
         <div className="grid-container">

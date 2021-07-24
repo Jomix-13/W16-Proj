@@ -14,16 +14,12 @@ router.get(
     async (req, res) => {
       const id = req.params.businessId
       const business = await Business.findByPk(id,{
-        include:
-        {
+        include:{
           model: Review,
-          order: [
-            ['createdAt', 'DESC']
-        ],
           include: {
             model: User,
-          }
-        }
+          },
+        },
       });
     return await res.json(business);
   })
@@ -59,7 +55,7 @@ router.post(
         async (req, res) => {
           const id = await parseInt(req.params.reviewId)
           const review = await Review.findByPk(id
-            // ,{include: User,}
+            ,{include: User,}
             )
           await review.update( 
             {answer: req.body.review, rating: req.body.rating}
@@ -70,7 +66,7 @@ router.post(
 
 
 router.put(
-  '/:businessId',
+  '/update/:businessId',
   asyncHandler(
       async (req, res) => {
         const id = await parseInt(req.params.businessId)

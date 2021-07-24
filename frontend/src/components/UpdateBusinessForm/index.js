@@ -57,14 +57,21 @@ const STATES =[
     "WY",
 ]
 function UpdateBusinessForm() {
-
+    const dispatch = useDispatch()
     const {id} = useParams()
-    const businesses = useSelector(state => Object.values(state.businesses));  
-    const business = businesses.find(business => business.id === Number(id))
+    
+    useEffect(()=>{
+        dispatch(NewBusiness.SingleBusinesses(id))
+    },[dispatch])
+    // const businesses = useSelector(state => state.businesses)
+    // console.log(businesses)
+    // const business = businesses.find(business => business.id === Number(id))
+    const business = useSelector(state => state.businesses.oneBusiness);
 
+    
     const sessionUser = useSelector((state) => state.session.user);
     const history = useHistory()
-    const dispatch = useDispatch()
+    
         
     const [title, setTitle] = useState(business.title)
     const [description, setDescription] = useState(business.description)
@@ -84,25 +91,23 @@ function UpdateBusinessForm() {
         if(!zipCode || zipCode.length !== 5) errorHandler.push('please enter valid Zip Code')
 
         setErrors(errorHandler)
-    },[title,description,address,city,zipCode])
+    },[business])
 
-    // useEffect(()=>{
-    //     dispatch(NewBusiness.EditBusiness())
-    // },[dispatch])
 
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const ownerId = sessionUser.id
-        const payLoad ={ownerId,title,description,address,city,state,zipCode}
-        history.push('/')
-        return dispatch(NewBusiness.EditBusiness(payLoad))
+        const payLoad ={id,ownerId,title,description,address,city,state,zipCode}
+        dispatch(NewBusiness.EditBusiness(payLoad))
+        history.push(`/${business.id}`)
+        return
     }
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/`)
+        history.push(`/${business.id}`)
       };
-
     return(
         <form 
             onSubmit={handleSubmit}
@@ -118,7 +123,7 @@ function UpdateBusinessForm() {
                 placeholder='Business Name'
                 className='signupInput'
                 type="text"
-                value={business.title}
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 />
             </label>
@@ -128,7 +133,7 @@ function UpdateBusinessForm() {
                 placeholder='Business Description'
                 className='signupInput'
                 type="text"
-                value={business.description}
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
@@ -138,7 +143,7 @@ function UpdateBusinessForm() {
                 placeholder='entee image url'
                 className='signupInput'
                 type="text"
-                // value={business.state}
+                // value={state}
                 // onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
@@ -148,7 +153,7 @@ function UpdateBusinessForm() {
                 placeholder='Street address'
                 className='signupInput'
                 type="text"
-                value={business.address}
+                value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 />
             </label>
@@ -158,14 +163,14 @@ function UpdateBusinessForm() {
                 placeholder='City'
                 className='signupInput'
                 type="text"
-                value={business.city}
+                value={city}
                 onChange={(e) => setCity(e.target.value)}
                 />
             </label>
 
             <div className='statediv'> State
                 <select
-                    value={business.state}
+                    value={state}
                     onChange={(e) => setState(e.target.value)}
                     >
                     {STATES.map(state => (
@@ -183,7 +188,7 @@ function UpdateBusinessForm() {
                 placeholder='zip Code'
                 className='signupInput'
                 type="text"
-                value={business.zipCode}
+                value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
                 />
             </label>

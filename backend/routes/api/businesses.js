@@ -11,14 +11,15 @@ router.get(
     '/',
     asyncHandler(
         async (req, res) => {
-          const businesses = await Business.findAll(
-            {include: 
-              {
-                model: Review,
-                include: {
-                  model: User,
-                }
-            }});
+          const businesses = await Business.findAll({
+            include: {
+              model: Review,
+              include: {
+                model: User,
+              }
+            },
+            order:[['createdAt', 'ASC']]
+          });
             return await res.json(businesses);
         })
 );

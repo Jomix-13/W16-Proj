@@ -1,8 +1,7 @@
 import {useDispatch,useSelector} from 'react-redux'
-import {useState} from 'react'
 import * as NewBusiness from '../../store/business'
-import EditReviewForm from '../SingleBusiness/EditReviewForm'
-import { Redirect, useHistory, useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
+import { NavLink } from 'react-router-dom'
 
 function Singelbus(){
 
@@ -12,8 +11,8 @@ function Singelbus(){
 
     const sessionUser = useSelector((state) => state.session.user);
 
-    const businesses = useSelector(state => Object.values(state.businesses));  
-    const business = businesses.find(business => business.id === Number(businessId))
+    const business = useSelector(state => state.businesses.oneBusiness);  
+    // const business = businesses.find(business => business.id === Number(businessId))
 
     return(
         <>
@@ -31,9 +30,8 @@ function Singelbus(){
                     </button>
 
                     <button 
-                    onClick={() => window.location.href=`/update/${businessId}`}
                     className='small'>
-                    update Business
+                    <NavLink to={`/update/${businessId}`}>update Business</NavLink>
                     </button>
                 </div>
             )}

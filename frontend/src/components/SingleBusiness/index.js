@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom'
 
-import {getBusinesses, SingleBusinesses} from '../../store/business'
+import {SingleBusinesses} from '../../store/business'
 import {addReview} from '../../store/business'
 import SingelReview from '../SingleReview'
 import Singelbus from '../singlbus'
@@ -12,22 +12,20 @@ import Singelbus from '../singlbus'
 import './single.css';
 
 function OneBusiness(){
+
     const dispatch = useDispatch()
     const {businessId} = useParams()
-     
     const sessionUser = useSelector((state) => state.session.user);
+    const business = useSelector(state => state.businesses.oneBusiness);  
 
-    const businesses = useSelector(state => Object.values(state.businesses));  
-    const business = businesses.find(business => business.id === Number(businessId))
 
-    const [review,setReview] = useState('Please tell us your experience')
-    const [rating,setRating] = useState(5)
+    const [review,setReview] = useState('')
+    const [rating,setRating] = useState('')
     const [errors,setErrors] = useState('')    
     
     useEffect(() => {
-      dispatch(getBusinesses())
-      dispatch(SingleBusinesses(businessId))
-    },[dispatch, businessId])
+        dispatch(SingleBusinesses(businessId))
+    },[])
     
     useEffect(() => {
       const errorHandler=[]
@@ -35,13 +33,13 @@ function OneBusiness(){
       if(review.length < 10) errorHandler.push('Your review needs to be more than 10 charachters')
       if(rating < 1 || rating > 5 || !rating ) errorHandler.push('Rating value must be between 1-5')
       setErrors(errorHandler)
-    },[review, rating,dispatch])
+    },[review, rating])
     
     function formHandeler(e){
         e.preventDefault()
         const userId = sessionUser.id
-        setReview('Please tell us your experience')
-        setRating(5)
+        setReview('')
+        setRating('')
         return dispatch(addReview({ review, rating, businessId , userId}))
       }
 
@@ -65,7 +63,7 @@ function OneBusiness(){
             </ul>
               <label className='reviewLable'>Review
                <input
-                placeholder="place your review here.."
+                placeholder="Please tell us your experience.."
                 className='signupInput'
                 type="text"
                 value={review}
@@ -91,9 +89,11 @@ function OneBusiness(){
 
         <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>
         <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
-        {business.Reviews.length > 0 && business.Reviews.map(review => (
-          <SingelReview key={review.id} review={review}></SingelReview>
-        ))}
+        {business?.Reviews?.length > 0 && business.Reviews.map(review => {
+          return(
+            <SingelReview key={review.id} review={review}></SingelReview>
+            )
+        })}
         </div>
       )}
     </>

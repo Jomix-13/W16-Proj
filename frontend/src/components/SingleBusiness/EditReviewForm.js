@@ -32,8 +32,6 @@ const EditReviewForm = ({ revieww, hideForm }) => {
     let updatedReview = await dispatch(EditReview(payload));
     if (updatedReview) {
       hideForm(false);
-      // history.push('/')
-      // return
     }
   };
 
