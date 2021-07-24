@@ -1,0 +1,33 @@
+
+.grid-container {
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-row:auto;
+    grid-gap: 25px 5px;
+}
+/* 
+.PARTO {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+.LetsEat {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+.yummy {
+  grid-column-start: 3;
+  grid-column-end: 4;
+} */
+
+.image{
+  height: 100px;
+  width: 200px;
+}
+
+*{
+  /* -moz-background-clip: ; */
+  /* background-image: url(https://tshirt-factory.com/images/detailed/51/Enjoy-Your-Life-V-1-718268302.png); */
+  background-color: rgb(158, 100, 110);
+}

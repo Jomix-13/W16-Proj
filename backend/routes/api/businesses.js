@@ -4,15 +4,28 @@ const router = express.Router();
 const asyncHandler = require('express-async-handler');
 
 const { Business } = require('../../db/models');
+const {Review} = require('../../db/models');
+const {User} = require('../../db/models');
 
 router.get(
     '/',
     asyncHandler(
         async (req, res) => {
-          const businesses = await Business.findAll();
-          return await res.json(businesses);
-    })
+          const businesses = await Business.findAll({
+            include: {
+              model: Review,
+              include: {
+                model: User,
+              }
+            },
+            order:[['createdAt', 'ASC']]
+          });
+            return await res.json(businesses);
+        })
 );
+
+
+
 
 
 module.exports = router;

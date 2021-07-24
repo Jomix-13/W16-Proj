@@ -1,0 +1,18 @@
+.loginLable{
+    color: rgb(0, 0, 0);
+    font-size:xx-large;
+}
+
+.error{
+    color: purple;
+    font-size: large;
+}
+
+.loginInput {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
