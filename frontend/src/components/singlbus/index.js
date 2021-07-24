@@ -33,7 +33,7 @@ function Singelbus(){
                     <button 
                     onClick={() => window.location.href=`/update/${businessId}`}
                     className='small'>
-                    Edit review
+                    update Business
                     </button>
                 </div>
             )}

@@ -9,9 +9,11 @@ function SingelReview({review}){
     const [showEditReviewForm,setShowEditReviewForm] = useState(false)
     const sessionUser = useSelector((state) => state.session.user);
 
+
+
     return(
         <div key={review.id}>
-            <ul> {review.User.username} :{review.answer} -- {review.rating} ⭐️</ul>
+            <ul> {review?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
             {sessionUser && sessionUser.id === review.userId && (    
                 <div className='container'>
                 <button 

@@ -83,7 +83,6 @@ export const addReview =({review,rating,businessId,userId}) => async (dispatch) 
   }
 }
 export const DeleteReview = (review) => async dispatch => {
-  // console.log('>>>>>>>>>>>>>>>>>>|||||',review)
 
   const response = await csrfFetch(`/api/business/${review.id}`,{
     method:'DELETE',
@@ -99,7 +98,6 @@ export const DeleteReview = (review) => async dispatch => {
 
 export const EditReview = (review) => async (dispatch) =>{
   
-  console.log('>>>>>>>>>>>>>>>>>>',review)
 
   const response = await csrfFetch(`/api/business/${review.id}`,
   {method:'PUT',
@@ -108,8 +106,8 @@ export const EditReview = (review) => async (dispatch) =>{
   });
   
   if (response.ok) {
-    await response.json();
-    dispatch(editReview(review));
+    const data = await response.json();
+    dispatch(editReview(data));
     return review
   }
 }
@@ -124,13 +122,11 @@ export const addBusiness =({ownerId,title,description,address,city,state,zipCode
   if (response.ok) {
     const business = await response.json();
     dispatch(add(business));
-    console.log(business)
     return business
   }
 }
 
 export const DeleteBusiness = (business) => async dispatch => {
-  console.log('>>>>>>>>>>>>>>>>>>|||||',business)
 
   const response = await csrfFetch(`/api/feature/${business.id}`,{
     method:'DELETE',
@@ -141,17 +137,15 @@ export const DeleteBusiness = (business) => async dispatch => {
     await response.json();
     
     dispatch(remove(business));
-    console.log('>>>>>>>>>>>>>>>>>>%%%%%%',business)
 
     return business
   }
 };
 
-export const EditBusiness = ({business}) => async (dispatch) =>{
+export const EditBusiness = (business) => async (dispatch) =>{
 
-  console.log('>>>>>>>>>>>>>>>>>>',business)
 
-  const response = await csrfFetch(`/api/feature/${business.id}`,
+  const response = await csrfFetch(`/api/business/${business.id}`,
   {method:'PUT',
   headers:{'Content-Type' : 'application/json'},
   body: JSON.stringify(business)
@@ -194,18 +188,19 @@ export const EditBusiness = ({business}) => async (dispatch) =>{
       case EDIT_REVIEW:{
 
         const newState = { ...state };
-        newState[action.review.id] = action.review;
-        console.log('>>>>>>>>>>1',[action.review])
+        const reviewsArr = newState[action.review.review.businessId].Reviews 
+        let re = reviewsArr.find(re => re.id === action.review.review.id)
+        // re = action.review.review
+        let index = reviewsArr.indexOf(re)
+        reviewsArr[index] = action.review.review
+        // newState[action.review.id] = action.review;
         return newState;
 
         // const newState = { ...state };
-        // console.log('>>>>>>>>>>',newState)
       //  newState[action.review.id] = action.review;;
         // oneReview = oneReview
         // const reviews = business.Reviews
-        // console.log('>>>>>>>>>>2',reviews)
         // const oneReview = reviews.find(review=> review.id)
-        // console.log('>>>>>>>>>>3',oneReview)
         // return newState
       }
       case DELETE_REVIEW: {
@@ -215,7 +210,6 @@ export const EditBusiness = ({business}) => async (dispatch) =>{
         let restReview = reviews.filter(review=> review.id !== action.review.id)
         business.Reviews = restReview
         // delete newState[review];
-        // console.log(action.review)
         return newState;
       }
       case ADD_BUINESS: {
@@ -234,7 +228,6 @@ export const EditBusiness = ({business}) => async (dispatch) =>{
     case EDIT_BUINESS:{
         const newState = { ...state };
         const business = newState[action.buiness];
-        console.log('LLLLLL',business)
 
         return newState
       }

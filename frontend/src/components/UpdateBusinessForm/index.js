@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
 
-import * as NewBusiness from '../../store/newBusiness'
+import * as NewBusiness from '../../store/business'
 
 const STATES =[
     "AL",
@@ -56,7 +56,11 @@ const STATES =[
     "WI",
     "WY",
 ]
-function UpdateBusinessForm(business) {
+function UpdateBusinessForm() {
+
+    const {id} = useParams()
+    const businesses = useSelector(state => Object.values(state.businesses));  
+    const business = businesses.find(business => business.id === Number(id))
 
     const sessionUser = useSelector((state) => state.session.user);
     const history = useHistory()
@@ -82,11 +86,16 @@ function UpdateBusinessForm(business) {
         setErrors(errorHandler)
     },[title,description,address,city,zipCode])
 
+    // useEffect(()=>{
+    //     dispatch(NewBusiness.EditBusiness())
+    // },[dispatch])
+
 
     const handleSubmit = (e) => {
         const ownerId = sessionUser.id
+        const payLoad ={ownerId,title,description,address,city,state,zipCode}
         history.push('/')
-        return dispatch(NewBusiness.EditBusiness({ownerId,title,description,address,city,state,zipCode}))
+        return dispatch(NewBusiness.EditBusiness(payLoad))
     }
 
     const handleCancelClick = (e) => {

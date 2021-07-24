@@ -1,6 +1,6 @@
 import React, {useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { getBusinesses } from '../../store/business';
 
@@ -14,6 +14,7 @@ function HomePage(){
 
 
     const businesses = useSelector(state => Object.values(state.businesses));
+
     
     useEffect(() => {
         dispatch(getBusinesses())

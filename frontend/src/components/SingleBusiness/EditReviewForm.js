@@ -19,7 +19,7 @@ const EditReviewForm = ({ revieww, hideForm }) => {
     if(review.length < 10) errorHandler.push('Your review needs to be more than 10 charachters')
     if(rating < 1 || rating > 5 || !rating ) errorHandler.push('Rating value must be between 1-5')
     setErrors(errorHandler)
-  },[review, rating])
+  },[review, rating,dispatch])
 
   const id = revieww.id
   const handleSubmit = async (e) => {
@@ -29,7 +29,6 @@ const EditReviewForm = ({ revieww, hideForm }) => {
       review,
       rating,
     };
-    console.log(payload)
     let updatedReview = await dispatch(EditReview(payload));
     if (updatedReview) {
       hideForm(false);

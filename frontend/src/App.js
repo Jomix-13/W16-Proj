@@ -9,6 +9,7 @@ import HomePage from  './components/Homepage'
 import OneBusiness from  './components/SingleBusiness'
 import NewBusinessForm from  './components/NewBusinessForm'
 import UpdateBusinessForm from  './components/UpdateBusinessForm'
+import {getBusinesses} from './store/business'
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function App() {
   // const {businessId} = useParams()
 
   useEffect(() => {
+    dispatch(getBusinesses())
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -37,8 +39,8 @@ function App() {
             <NewBusinessForm></NewBusinessForm>
           </Route>
           {/* <Route path={`/update/businessId`}> */}
-          <Route path={`/update`}>
-            <UpdateBusinessForm></UpdateBusinessForm>
+          <Route path={`/update/:id`}>
+            <UpdateBusinessForm ></UpdateBusinessForm>
           </Route>
           <Route path={`/:businessId`} >
             <OneBusiness></OneBusiness>

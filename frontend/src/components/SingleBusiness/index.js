@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom'
 
-import {SingleBusinesses} from '../../store/business'
+import {getBusinesses, SingleBusinesses} from '../../store/business'
 import {addReview} from '../../store/business'
 import SingelReview from '../SingleReview'
 import Singelbus from '../singlbus'
@@ -25,6 +25,7 @@ function OneBusiness(){
     const [errors,setErrors] = useState('')    
     
     useEffect(() => {
+      dispatch(getBusinesses())
       dispatch(SingleBusinesses(businessId))
     },[dispatch, businessId])
     
@@ -34,7 +35,7 @@ function OneBusiness(){
       if(review.length < 10) errorHandler.push('Your review needs to be more than 10 charachters')
       if(rating < 1 || rating > 5 || !rating ) errorHandler.push('Rating value must be between 1-5')
       setErrors(errorHandler)
-    },[review, rating])
+    },[review, rating,dispatch])
     
     function formHandeler(e){
         e.preventDefault()

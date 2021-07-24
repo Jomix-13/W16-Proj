@@ -61,13 +61,32 @@ router.post(
           const review = await Review.findByPk(id
             // ,{include: User,}
             )
-            console.log('**************************', review)
-            console.log('**************************', req.body)
-          await review.update( req.body
-            // {review: req.body.review, rating: req.body.rating}
+          await review.update( 
+            {answer: req.body.review, rating: req.body.rating}
            );
           return await res.json({review});
     })
+);
+
+
+router.put(
+  '/:businessId',
+  asyncHandler(
+      async (req, res) => {
+        const id = await parseInt(req.params.businessId)
+        const business = await Business.findByPk(id,{
+          include: User,
+        })
+        await business.update({ 
+          title: req.body.title,
+          description: req.body.description,
+          address: req.body.address,
+          city: req.body.city,
+          state: req.body.state,
+          zipCode: req.body.zipCode 
+        });
+        return await res.json({business});
+  })
 );
 
 module.exports = router;
