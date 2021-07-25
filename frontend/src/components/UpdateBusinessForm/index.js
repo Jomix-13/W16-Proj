@@ -63,9 +63,7 @@ function UpdateBusinessForm() {
     useEffect(()=>{
         dispatch(NewBusiness.SingleBusinesses(id))
     },[dispatch])
-    // const businesses = useSelector(state => state.businesses)
-    // console.log(businesses)
-    // const business = businesses.find(business => business.id === Number(id))
+
     const business = useSelector(state => state.businesses.oneBusiness);
 
     
@@ -79,6 +77,7 @@ function UpdateBusinessForm() {
     const [city, setCity] = useState(business.city)
     const [state, setState] = useState(business.state)
     const [zipCode, setZipCode] = useState(business.zipCode)
+    const [image, setImage] = useState(business.image)
     const [errors, setErrors] = useState([])
 
     useEffect(()=>{
@@ -86,6 +85,7 @@ function UpdateBusinessForm() {
 
         if(!title) errorHandler.push('please enter business name')
         if(!description) errorHandler.push('please enter business description')
+        if(!image) errorHandler.push('please enter business image')
         if(!address) errorHandler.push('please enter business street address')
         if(!city) errorHandler.push('please enter city name')
         if(!zipCode || zipCode.length !== 5) errorHandler.push('please enter valid Zip Code')
@@ -98,7 +98,7 @@ function UpdateBusinessForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const ownerId = sessionUser.id
-        const payLoad ={id,ownerId,title,description,address,city,state,zipCode}
+        const payLoad ={id,ownerId,title,description,image,address,city,state,zipCode}
         dispatch(NewBusiness.EditBusiness(payLoad))
         history.push(`/${business.id}`)
         return
@@ -106,7 +106,7 @@ function UpdateBusinessForm() {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/${business.id}`)
+        // history.push(`/${business.id}`)
       };
     return(
         <form 
@@ -140,11 +140,11 @@ function UpdateBusinessForm() {
 
             <label> image
                 <input
-                placeholder='entee image url'
+                placeholder='enter image url'
                 className='signupInput'
                 type="text"
-                // value={state}
-                // onChange={(e) => setDescription(e.target.value)}
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
                 />
             </label>
               

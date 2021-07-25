@@ -60,12 +60,11 @@ export const getBusinesses = () => async dispatch => {
   };
 
 export const SingleBusinesses = (businessId) => async dispatch => {
-
-    const response = await fetch(`/api/business/${businessId}`);
+  const response = await fetch(`/api/business/${businessId}`);
   
-    if (response.ok) {
-      const business = await response.json();
-      dispatch(oneBusiness(business));
+  if (response.ok) {
+    const business = await response.json();
+    dispatch(oneBusiness(business));
       return business
     }
 };
@@ -112,11 +111,11 @@ export const EditReview = (review) => async (dispatch) =>{
   }
 }
 
-export const addBusiness =({ownerId,title,description,address,city,state,zipCode}) => async (dispatch) =>{
+export const addBusiness =({ownerId,title,description,image,address,city,state,zipCode}) => async (dispatch) =>{
   const response = await csrfFetch(`/api/feature/new`,
   {method:'POST',
   headers:{'Content-Type' : 'application/json'},
-  body: JSON.stringify({ownerId,title,description,address,city,state,zipCode})
+  body: JSON.stringify({ownerId,title,description,image,address,city,state,zipCode})
   });
   
   if (response.ok) {
@@ -187,7 +186,6 @@ const intialState = {
         return {...state}
       }
       case EDIT_BUSINESS:{
-        console.log(action.business.business)
         return {
           ...state,
           oneBusiness : action.business.business
@@ -197,9 +195,9 @@ const intialState = {
         return {
           ...state,
           oneBusiness:{
-            Reviews: [action.review,...state.oneBusiness.Reviews]
+            Reviews: [...state.oneBusiness.Reviews,action.review]
           }
-        }
+        }        
       }
       case EDIT_REVIEW:{
         let allreviewsArr = state.oneBusiness.Reviews

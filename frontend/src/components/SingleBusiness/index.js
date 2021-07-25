@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
 
 import {SingleBusinesses} from '../../store/business'
 import {addReview} from '../../store/business'
@@ -12,6 +12,8 @@ import Singelbus from '../singlbus'
 import './single.css';
 
 function OneBusiness(){
+
+  const history=useHistory()
 
     const dispatch = useDispatch()
     const {businessId} = useParams()
@@ -25,7 +27,7 @@ function OneBusiness(){
     
     useEffect(() => {
         dispatch(SingleBusinesses(businessId))
-    },[])
+    },[dispatch])
     
     useEffect(() => {
       const errorHandler=[]
@@ -36,11 +38,12 @@ function OneBusiness(){
     },[review, rating])
     
     function formHandeler(e){
-        e.preventDefault()
-        const userId = sessionUser.id
-        setReview('')
-        setRating('')
-        return dispatch(addReview({ review, rating, businessId , userId}))
+      // e.preventDefault()
+      const userId = sessionUser.id
+      setReview('')
+      setRating('')
+      dispatch(addReview({ review, rating, businessId , userId}))
+      // history.push(`/${businessId}`)
       }
 
   return(
@@ -50,7 +53,7 @@ function OneBusiness(){
           <ul className='title'>{business.title}</ul>
           <ul className='type'>{business.description}</ul>
           <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
-          <img className='busimage' src={`/images/${business.title}.jpeg`} alt=''></img>
+          <img className='busimage' src={business.image} alt=''></img>
           <Singelbus></Singelbus>
           <form 
           hidden={sessionUser? false : true}

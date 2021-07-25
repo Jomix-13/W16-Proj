@@ -69,13 +69,14 @@ function NewBusinessForm() {
     const [state, setState] = useState(STATES[0])
     const [zipCode, setZipCode] = useState('')
     const [errors, setErrors] = useState([])
-    // const [image, setImage] = useState([])
+    const [image, setImage] = useState('')
 
     useEffect(()=>{
         const errorHandler =[]
 
         if(!title.length) errorHandler.push('please enter business name')
         if(!description.length) errorHandler.push('please enter business description')
+        if(!image.length) errorHandler.push('please enter business image')
         if(!address.length) errorHandler.push('please enter business street address')
         if(!city.length) errorHandler.push('please enter city name')
         if(!zipCode.length || zipCode.length !== 5) errorHandler.push('please enter valid Zip Code')
@@ -84,10 +85,10 @@ function NewBusinessForm() {
     },[title,description,address,city,zipCode])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         const ownerId = sessionUser.id
         history.push('/')
-        return dispatch(NewBusiness.addBusiness({ownerId,title,description,address,city,state,zipCode}))
+        return dispatch(NewBusiness.addBusiness({ownerId,title,description,image,address,city,state,zipCode}))
     }
 
     return(
@@ -122,11 +123,11 @@ function NewBusinessForm() {
 
             <label> image
                 <input
-                placeholder='entee image url'
+                placeholder='Please enter image url'
                 className='signupInput'
                 type="text"
-                // src={image}
-                // onChange={(e) => setImage(e.target.value)}
+                src={image}
+                onChange={(e) => setImage(e.target.value)}
                 />
             </label>
               
