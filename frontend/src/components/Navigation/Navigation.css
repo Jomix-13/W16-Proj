@@ -7,6 +7,7 @@
   }
 
 .topnav a {
+    /* list-style-type: none; */
     float: left;
     color: #000000;
     text-align: center;
@@ -21,6 +22,7 @@
 } */
 
 .topnav a:hover {
+    /* list-style-type: none; */
     background-color: #ddd;
     color: black;
     border: 1px solid black;
@@ -58,6 +60,7 @@ input :focus{
   }
 
 button {
+    /* list-style-type: none; */
     background-color: #0704aa;
     border: 1px solid black;
     border-radius: 15px;
@@ -73,4 +76,6 @@ button {
 button:hover {
     opacity:1;
 }
+
+
   

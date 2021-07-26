@@ -92,97 +92,101 @@ function NewBusinessForm() {
     }
 
     return(
-        <form 
-            onSubmit={handleSubmit}
-        >
-             <ul className='errors'>
-            {!!errors && errors.map(error=>(
-                <li key={error}>{error}</li>
-            ))}
-            </ul>
+        <>
+            <div className='formcontainer'>  
+                <form className='form'
+                onSubmit={handleSubmit}
+            >
+                <ul className='errors'>
+                {!!errors && errors.map(error=>(
+                    <li key={error}>{error}</li>
+                ))}
+                </ul>
 
-            <label> Business Name
-                <input
-                placeholder='Business Name'
-                className='signupInput'
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                />
-            </label>
-           
-            <label> Business Description
-                <input
-                placeholder='Business Description'
-                className='signupInput'
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                />
-            </label>
+                <label className='loginLable'> Business Name
+                    <input
+                    placeholder='Business Name'
+                    className='loginInput'
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    />
+                </label>
+            
+                <label className='loginLable'> Business Description
+                    <input
+                    placeholder='Business Description'
+                    className='loginInput'
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    />
+                </label>
 
-            <label> image
-                <input
-                placeholder='Please enter image url'
-                className='signupInput'
-                type="text"
-                src={image}
-                onChange={(e) => setImage(e.target.value)}
-                />
-            </label>
-              
-            <label> Street address
-                <input
-                placeholder='Street address'
-                className='signupInput'
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                />
-            </label>
+                <label className='loginLable'> image
+                    <input
+                    placeholder='Please enter image url'
+                    className='loginInput'
+                    type="text"
+                    src={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    />
+                </label>
+                
+                <label className='loginLable'> Street address
+                    <input
+                    placeholder='Street address'
+                    className='loginInput'
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    />
+                </label>
 
-            <label> City
-                <input
-                placeholder='City'
-                className='signupInput'
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                />
-            </label>
+                <label className='loginLable'> City
+                    <input
+                    placeholder='City'
+                    className='loginInput'
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    />
+                </label>
 
-            <div className='statediv'> State
-                <select
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                    >
-                    {STATES.map(state => (
-                        <option
-                        key={state}
+                <div className='statediv'> State
+                    <select
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
                         >
-                        {state}
-                    </option>
-                    ))}
-                </select>
-            </div>
+                        {STATES.map(state => (
+                            <option
+                            key={state}
+                            >
+                            {state}
+                        </option>
+                        ))}
+                    </select>
+                </div>
 
-            <label> zip Code
-                <input
-                placeholder='zip Code'
-                className='signupInput'
-                type="text"
-                value={zipCode}
-                onChange={(e) => setZipCode(e.target.value)}
-                />
-            </label>
+                <label className='loginLable'> zip Code
+                    <input
+                    placeholder='zip Code'
+                    className='loginInput'
+                    type="text"
+                    value={zipCode}
+                    onChange={(e) => setZipCode(e.target.value)}
+                    />
+                </label>
 
-            <button
-              disabled={errors.length ? true : false}
-              type="submit"
-              >
-              Add Business
-            </button>
-        </form>    
+                <button
+                disabled={errors.length ? true : false}
+                type="submit"
+                >
+                Add Business
+                </button>
+            </form>  
+        </div>
+    </>  
     )
 
 

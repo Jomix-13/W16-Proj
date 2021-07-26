@@ -4,6 +4,8 @@ import {useHistory, useParams} from 'react-router-dom'
 
 import * as NewBusiness from '../../store/business'
 
+import './LoginForm.css'
+
 const STATES =[
     "AL",
     "AK",
