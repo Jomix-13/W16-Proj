@@ -4,15 +4,19 @@
 }
 
 .errors{
-    color: purple;
+    color:  blue;
     font-size: large;
+    background-color: white;
+    opacity: .8;
 }
 
 .signupInput {
-    width: 100%;
+    width: 75%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
+    border: 1px solid black;
+    border-radius: 15px;
 }

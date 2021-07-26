@@ -1,18 +1,38 @@
 .loginLable{
-    color: rgb(0, 0, 0);
+    color: rgb(1, 10, 2);
     font-size:xx-large;
+    display: flex;
+    justify-content: left;
+    justify-content: space-between;
+    margin: 20px;
+
 }
 
 .error{
-    color: purple;
+    color:  blue;
     font-size: large;
+    background-color: white;
+    opacity: .8;
 }
 
 .loginInput {
-    width: 100%;
+    width: 200px;
     padding: 15px;
-    margin: 5px 0 22px 0;
+    margin: 5px;
     display: inline-block;
     border: none;
     background: #f1f1f1;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formcontainer{
+    display: flex;
+    justify-content: center;
+
 }

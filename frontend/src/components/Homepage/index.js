@@ -22,15 +22,18 @@ function HomePage(){
         <>
         <div className="grid-container">
         {!!businesses && businesses.map((business)=>(
-            <div key={business.id} to={`api/home/${business.id}`} className={`${business.title}`}>
-                <NavLink to={`/${business.id}`}>{business.title}</NavLink>
-                <li>{business.description}</li>
+        <NavLink  to={`/${business.id}`}>    
+            <div key={business.id} className='busdiv' to={`api/home/${business.id}`} >
+                <li className='busname'>{business.title}</li>
+                <li className='busdes'>{business.description}</li>
                 <img className='image' src={business.image} alt=''></img>
-                <li>{business.address}</li>
-                <li>{business.city},{business.state}.{business.zipCode}</li>
+                <li className='busadd'>{business.address}</li>
+                <li className='busadd2'>{business.city},{business.state}.{business.zipCode}</li>
             </div>
+        </NavLink>
         ))}
         </div>
+
         </>
     )
         }

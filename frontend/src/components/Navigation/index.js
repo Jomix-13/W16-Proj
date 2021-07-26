@@ -21,10 +21,10 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-      <ul>
+      <ul className='navbutt'>
         <NavLink to="/login">Log In</NavLink>
       </ul>
-      <ul>
+      <ul className='navbutt'>
         <NavLink to="/signup">Sign Up</NavLink>
       </ul>
       </>

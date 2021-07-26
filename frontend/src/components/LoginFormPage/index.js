@@ -47,44 +47,44 @@ useEffect(()=>{
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul className='error'>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <ul>
-        <label className='loginLable'>
-          Username or Email
-          <input
-            placeholder="Username or Email"
-            className='loginInput'
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-            />
-        </label>
-      </ul>
-      <ul>
-        <label className='loginLable'>
-          Password
-          <input
-            placeholder="Password"
-            className='loginInput'
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            />
-        </label>
-      </ul>
-      <button 
-        disabled={errors.length ? true : false}
-        type="submit">
-        Log In
-      </button>
-      {/* <button type="submit">Demo User</button> */}
-      <button type="button" onClick={demoHandler}>Demo User</button>
-    </form>
+    <>
+    <div className='formcontainer'>  
+      <form className='form' onSubmit={handleSubmit}>
+        <ul className='error'>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+          <label className='loginLable'>
+            Username or Email
+            <input
+              placeholder="Username or Email"
+              className='loginInput'
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+              />
+          </label>
+          <label className='loginLable'>
+            Password
+            <input
+              placeholder="Password"
+              className='loginInput'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              />
+          </label>
+        <button 
+          disabled={errors.length ? true : false}
+          type="submit">
+          Log In
+        </button>
+        {/* <button type="submit">Demo User</button> */}
+        <button type="button" onClick={demoHandler}>Demo User</button>
+      </form>
+    </div>
+    </>
   );
 }
 
