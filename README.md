@@ -29,3 +29,12 @@ Contributors names and contact info
 John Wanis
 github: https://github.com/Jomix-13
 linkedIn: http://linkedin.com/in/john-wanis-764957138
+
+## Technologies Used
+
+React.js
+Redux
+Express
+Sequelize
+PostgreSQL
+Heroku
