@@ -59,7 +59,7 @@ function OneBusiness(){
           hidden={sessionUser? false : true}
           onSubmit={formHandeler}
           >
-            <ul className='errors'>
+            <ul className='error'>
             {!!errors && errors.map(error=>(
                 <li key={error}>{error}</li>
             ))}

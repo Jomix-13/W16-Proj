@@ -1,10 +1,13 @@
 .title{
     font-size:4em;
     text-decoration: underline;
+    color: purple;
+
 }
 
 .type{
     font-size:2em;
+    color: purple;
 }
 
 
@@ -17,6 +20,8 @@
     height: 300px;
     width: 500px;
     padding: 10px;
+    border: 1px solid;
+    border-radius: 15px;
 }
 .container {
     display: grid;
