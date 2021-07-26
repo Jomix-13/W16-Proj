@@ -21,7 +21,6 @@ router.get(
           },
         },
       });
-      console.log('>>>>>>>>>>>>>>>>>',business)
     return await res.json(business);
   })
 );
