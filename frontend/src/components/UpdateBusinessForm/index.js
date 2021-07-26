@@ -116,7 +116,7 @@ function UpdateBusinessForm() {
             <form className='form'
                 onSubmit={handleSubmit}
             >
-                <ul className='errors'>
+                <ul className='error'>
                 {!!errors && errors.map(error=>(
                     <li key={error}>{error}</li>
                 ))}
