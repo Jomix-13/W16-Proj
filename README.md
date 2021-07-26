@@ -4,12 +4,13 @@ jovero
 
 ## Description
 
-This project 
-*     Allwoing users to signup and login
-*     Allwoing logged in users to create a page for thier business
-*     Allwoing business owner to delete or edit thier business page
-*     Allwoing logged in users to Add a comment and review for a business
-*     Allwoing logged in users to delete or edit thier commints in the business page (if they have any)
+This project Allowing
+*     Users to signup and login
+*     Logged in users to create a page for thier business
+*     Business owner to delete or edit thier business page
+*     Logged in users to Add a comments and reviews for a businesses
+*     Logged in users to delete or edit thier comments they have on the business page (if they have any)
+*     Not looged in users to browes all businesses and be able to see all comments/reviews related
 
 ### cloning
 
