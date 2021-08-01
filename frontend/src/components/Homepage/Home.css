@@ -1,33 +1,64 @@
+body{
+  background: url(https://www.planetware.com/photos-large/EGY/egypt-cairo-pyramids-of-giza-and%20camels-2.jpg)
+        no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
 
 .grid-container {
     display: grid;
     grid-template-columns:1fr 1fr 1fr;
     grid-row:auto;
     grid-gap: 25px 5px;
+
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 20px;
+
 }
-/* 
-.PARTO {
-    grid-column-start: 1;
-    grid-column-end: 2;
+
+.busdiv {
+  background-color: white;
+  opacity: .8;
+  border: 1px solid tomato;
+  border-radius: 15px;
+  padding: 20px;
+  transition-property: background-color;
+  transition-delay: 0s;
   }
 
-.LetsEat {
-    grid-column-start: 2;
-    grid-column-end: 3;
+  .busdiv:hover{
+    background-color: purple;
+    opacity: .8;
+    margin: 10px;
   }
 
-.yummy {
-  grid-column-start: 3;
-  grid-column-end: 4;
-} */
+  .busname{
+    color: teal;
+    font: bolder;
+    list-style-type: none;
+  }
+
+.busdes {
+  list-style-type: none;
+  }
+
+.busadd {
+  list-style-type: none;
+
+  
+
+} 
+.busadd2 {
+  list-style-type: none;
+
+
+} 
 
 .image{
-  height: 100px;
-  width: 200px;
-}
-
-*{
-  /* -moz-background-clip: ; */
-  /* background-image: url(https://tshirt-factory.com/images/detailed/51/Enjoy-Your-Life-V-1-718268302.png); */
-  background-color: rgb(158, 100, 110);
+  height: 150px;
+  width: 300px;
 }

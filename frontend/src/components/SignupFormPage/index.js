@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
-import './Signupform.css'
+// import './Signupform.css'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -39,54 +39,56 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul className='errors'>
+    <>
+    <div className='formcontainer'>
+    <form className='form' onSubmit={handleSubmit}>
+      <ul className='error'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
       </ul>
-      <label className='signupLable'>
+      <label className='loginLable'>
         Email
         <input
           placeholder="Email"
-          className='signupInput'
+          className='loginInput'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        />
+          />
       </label>
-      <label className='signupLable'>
+      <label className='loginLable'>
         Username
         <input
           placeholder="Username"
-          className='signupInput'
+          className='loginInput'
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-        />
+          />
       </label>
-      <label className='signupLable'>
+      <label className='loginLable'>
         Password
         <input
           placeholder="Password"
-          className='signupInput'
+          className='loginInput'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        />
+          />
       </label>
-      <label className='signupLable'>
+      <label className='loginLable'>
         Confirm Password
         <input
           placeholder="Confirm Password"
-          className='signupInput'
+          className='loginInput'
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-        />
+          />
       </label>
       <button 
         // disabled={errors.length ? true : false}
@@ -95,6 +97,8 @@ function SignupFormPage() {
           Sign Up
       </button>
     </form>
+          </div>
+          </>
   );
 }
 

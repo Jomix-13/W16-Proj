@@ -18,7 +18,7 @@ router.get(
                 model: User,
               }
             },
-            order:[['createdAt', 'ASC']]
+            order:[['createdAt', 'DESC']]
           });
             return await res.json(businesses);
         })

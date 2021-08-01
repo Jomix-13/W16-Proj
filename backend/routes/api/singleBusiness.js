@@ -76,6 +76,7 @@ router.put(
         await business.update({ 
           title: req.body.title,
           description: req.body.description,
+          image: req.body.image,
           address: req.body.address,
           city: req.body.city,
           state: req.body.state,

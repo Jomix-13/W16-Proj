@@ -29,10 +29,13 @@ function Singelbus(){
                     Delete Business
                     </button>
 
+                    <NavLink to={`/update/${businessId}`}>
                     <button 
                     className='small'>
-                    <NavLink to={`/update/${businessId}`}>update Business</NavLink>
+                        update Business
+                    {/* <NavLink to={`/update/${businessId}`}>update Business</NavLink> */}
                     </button>
+                        </NavLink>
                 </div>
             )}
         </> 

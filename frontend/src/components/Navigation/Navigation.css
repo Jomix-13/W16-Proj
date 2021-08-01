@@ -1,25 +1,40 @@
 .topnav {
-    background-color: rgb(126, 86, 86);
+    background-color: white;
+    opacity: 0.5;
+    border: 1px solid black;
+    border-radius: 15px;
     overflow: hidden;
   }
 
 .topnav a {
+    /* list-style-type: none; */
     float: left;
     color: #000000;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    border: 1px solid black;
+    border-radius: 15px;
 }
+/* .navbutt{
+    padding: 10px;
+} */
 
 .topnav a:hover {
+    /* list-style-type: none; */
     background-color: #ddd;
     color: black;
+    border: 1px solid black;
+    border-radius: 15px;
+    
 }
 
 .topnav a.active {
     background-color: #e6da3b;
     color: rgb(212, 134, 134);
+    border: 1px solid black;
+    border-radius: 25px
 }
 
 .topnav input[type=text] {
@@ -45,17 +60,22 @@ input :focus{
   }
 
 button {
+    /* list-style-type: none; */
     background-color: #0704aa;
+    border: 1px solid black;
+    border-radius: 15px;
     font-weight:bold;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor:progress;
-    width: 100%;
+    width: 30%;
     opacity: 0.9;
 }
 button:hover {
     opacity:1;
 }
+
+
   
