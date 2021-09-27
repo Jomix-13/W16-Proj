@@ -52,7 +52,7 @@ function OneBusiness(){
         <div>
           <ul className='title'>{business.title}</ul>
           <ul className='type'>{business.description}</ul>
-          <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
+          <li className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
           <img className='busimage' src={business.image} alt=''></img>
           <Singelbus></Singelbus>
           <form 
@@ -94,7 +94,7 @@ function OneBusiness(){
         <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
         {business?.Reviews?.length > 0 && business.Reviews.map(review => {
           return(
-            <SingelReview key={review.id} review={review}></SingelReview>
+            <SingelReview className='singleReview' key={review.id} review={review}></SingelReview>
             )
         })}
         </div>

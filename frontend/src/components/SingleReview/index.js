@@ -20,7 +20,7 @@ function SingelReview({review}){
 
     return(
         <div key={review.id}>
-            <ul> {review?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
+            <ul className='SingleReview'> {review?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
             {sessionUser && sessionUser.id === review.userId && (    
                 <div className='container'>
                 <button 

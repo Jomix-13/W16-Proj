@@ -1,19 +1,29 @@
 .title{
     font-size:4em;
     text-decoration: underline;
-    color: purple;
+    color: white;
 
 }
 
 .type{
     font-size:2em;
-    color: purple;
+    color: white;
+}
+.add{
+    font-size:1.5em;
+    color: white;
+    list-style-type: none;
 }
 
 
 .reviews{
     font-size:2em;
     text-decoration: underline;
+    color: white;
+}
+
+.SingleReview{
+    color: white;
 }
 
 .busimage{
