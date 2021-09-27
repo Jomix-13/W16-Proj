@@ -40,7 +40,7 @@ function Navigation({ isLoaded }){
       {/* <ul>
           <button onClick={logout}>Log Out</button>
       </ul> */}
-            <input type="text" placeholder="Search..">
+            <input className='searchinput' type="text" placeholder="Search..">
       </input>
         {isLoaded && sessionLinks}
     </div>

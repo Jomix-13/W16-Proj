@@ -42,10 +42,13 @@ function SignupFormPage() {
     <>
     <div className='formcontainer'>
     <form className='form' onSubmit={handleSubmit}>
+      <div className='ediv2'>
       <ul className='error'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
       </ul>
+      </div>
+      <div className='inputdiv'>
       <label className='loginLable'>
         Email
         <input
@@ -90,6 +93,7 @@ function SignupFormPage() {
           required
           />
       </label>
+      </div>
       <button 
         // disabled={errors.length ? true : false}
         hidden={errors.length ? true : false}

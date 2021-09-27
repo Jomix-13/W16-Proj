@@ -1,5 +1,5 @@
 .loginLable{
-    color: rgb(1, 10, 2);
+    color: white;
     font-size:xx-large;
     display: flex;
     justify-content: left;
@@ -11,20 +11,32 @@
 .error{
     color: red;
     font-size: large;
-    background-color: white;
+    background-color: black;
     opacity: .8;
 }
+.ediv{
+    height: 130px;
+}
+.inputdiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 50vw;
 
-.loginInput {
+}
+/* .loginInput {
     width: 200px;
     padding: 15px;
     margin: 5px;
     display: inline-block;
     border: none;
-    background: #f1f1f1;
+    background: black;
+    color: white;
     border: 1px solid black;
     border-radius: 15px;
-}
+    font-size: large;
+} */
 .form{
     display: flex;
     flex-direction: column;

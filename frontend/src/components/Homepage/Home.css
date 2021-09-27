@@ -1,6 +1,7 @@
 body{
-  background: url(https://www.planetware.com/photos-large/EGY/egypt-cairo-pyramids-of-giza-and%20camels-2.jpg)
-        no-repeat center center fixed;
+  /* background: url(https://www.planetware.com/photos-large/EGY/egypt-cairo-pyramids-of-giza-and%20camels-2.jpg)
+        no-repeat center center fixed; */
+    background-color: black;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -21,9 +22,9 @@ body{
 }
 
 .busdiv {
-  background-color: white;
+  /* background-color: white; */
   opacity: .8;
-  border: 1px solid tomato;
+  border: 1px solid rgb(184, 184, 8);
   border-radius: 15px;
   padding: 20px;
   transition-property: background-color;
@@ -31,31 +32,34 @@ body{
   }
 
   .busdiv:hover{
-    background-color: purple;
+    background-color: rgb(184, 184, 8);
     opacity: .8;
     margin: 10px;
   }
 
   .busname{
-    color: teal;
-    font: bolder;
+    color: white;
+    font:large bolder;
     list-style-type: none;
+  }
+
+
+  .grid-container a{
+    text-decoration: none;
   }
 
 .busdes {
   list-style-type: none;
-  }
+  color: white;
+}
 
 .busadd {
   list-style-type: none;
-
-  
-
+  color: white;
 } 
 .busadd2 {
   list-style-type: none;
-
-
+  color: white;
 } 
 
 .image{

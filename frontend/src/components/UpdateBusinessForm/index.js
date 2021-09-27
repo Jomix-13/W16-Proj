@@ -121,7 +121,6 @@ function UpdateBusinessForm() {
                     <li key={error}>{error}</li>
                 ))}
                 </ul>
-
                 <label className='loginLable'> Business Name
                     <input
                     placeholder='Business Name'
@@ -131,7 +130,7 @@ function UpdateBusinessForm() {
                     onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
-            
+                            
                 <label className='loginLable'> Business Description
                     <input
                     placeholder='Business Description'
