@@ -19,6 +19,7 @@ function OneBusiness(){
     const {businessId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
     const business = useSelector(state => state.businesses.oneBusiness);  
+    console.log('comp1', business)
 
 
     const [review,setReview] = useState('')
@@ -26,7 +27,8 @@ function OneBusiness(){
     const [errors,setErrors] = useState('')    
     
     useEffect(() => {
-        dispatch(SingleBusinesses(businessId))
+      dispatch(SingleBusinesses(businessId))
+        console.log('comp2', SingleBusinesses(businessId))
     },[dispatch])
     
     useEffect(() => {
@@ -38,7 +40,7 @@ function OneBusiness(){
     },[review, rating])
     
     function formHandeler(e){
-      // e.preventDefault()
+      e.preventDefault()
       const userId = sessionUser.id
       setReview('')
       setRating('')
@@ -64,6 +66,7 @@ function OneBusiness(){
                 <li key={error}>{error}</li>
             ))}
             </ul>
+            <div>
               <label className='reviewLable'>Review
                <input
                 placeholder="Please tell us your experience.."
@@ -73,6 +76,8 @@ function OneBusiness(){
                 onChange={(e) => setReview(e.target.value)}
                 />
               </label>
+              </div>
+              <div>
               <label className='reviewLable'>Rating
                 <input
                 placeholder="1 - 5"
@@ -83,11 +88,14 @@ function OneBusiness(){
                 onChange={(e) => setRating(e.target.value)}
                 />
               </label>
+              </div>
+              <div>
               <button
               disabled={errors.length ? true : false}
               type="submit"
               >
               Add Review</button>
+              </div>
           </form>
 
         <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>

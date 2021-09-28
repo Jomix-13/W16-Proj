@@ -37,6 +37,28 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
  }
+.reviewLable{
+    display: flex;
+    align-content: flex-start;
+    color: white;
+    font-size: 1.5em;
+    /* padding-right: 70px; */
+    margin: 15px;
+    /* justify-content:center */
+}
+.signupInput {
+    /* display: flex;
+    justify-content: left; */
+    width: 50vw;
+    font-size: 1.25em;
+    
+}
+.reviewInput {
+    /* display: flex; */
+    /* align-items: flex-start; */
+    width: 25vw;
+    font-size: 1.25em;
+}
 
  
 .small{
@@ -50,4 +72,9 @@
     width: 150px;
     height: 10px;
     column-gap: 20px;
+}
+
+.container a{
+    /* list-style-type: none; */
+    text-decoration: none;
 }

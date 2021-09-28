@@ -30,8 +30,6 @@ function SingelReview({review}){
                 onClick={() => 
                     {
                     dispatch(DeleteReview(review))
-                    history.push(`/`)
-
                     }
                 }
                 className='small'>

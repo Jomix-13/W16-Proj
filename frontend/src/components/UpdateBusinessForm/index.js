@@ -62,11 +62,12 @@ function UpdateBusinessForm() {
     const dispatch = useDispatch()
     const {id} = useParams()
     
+    const business = useSelector(state => state.businesses.oneBusiness);
+    
     useEffect(()=>{
         dispatch(NewBusiness.SingleBusinesses(id))
-    },[dispatch])
+    },[dispatch,business])
 
-    const business = useSelector(state => state.businesses.oneBusiness);
 
     
     const sessionUser = useSelector((state) => state.session.user);
