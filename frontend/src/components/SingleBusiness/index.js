@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom'
 
-import {SingleBusinesses} from '../../store/business'
-import {addReview} from '../../store/business'
+import {SingleBusinesses} from '../../store/0business'
+import {addReview} from '../../store/0review'
+// import {SingleBusinesses} from '../../store/business'
+// import {addReview} from '../../store/business'
 import SingelReview from '../SingleReview'
 import Singelbus from '../singlbus'
 
@@ -19,7 +21,6 @@ function OneBusiness(){
     const {businessId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
     const business = useSelector(state => state.businesses.oneBusiness);  
-    console.log('comp1', business)
 
 
     const [review,setReview] = useState('')
@@ -28,7 +29,6 @@ function OneBusiness(){
     
     useEffect(() => {
       dispatch(SingleBusinesses(businessId))
-        console.log('comp2', SingleBusinesses(businessId))
     },[dispatch])
     
     useEffect(() => {

@@ -2,7 +2,8 @@ import React, {useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 
-import { getBusinesses } from '../../store/business';
+// import { getBusinesses } from '../../store/business';
+import { getBusinesses } from '../../store/0business';
 
 // import { getOneBusinesses } from '../../store/business';
 
@@ -13,7 +14,8 @@ function HomePage(){
     const dispatch = useDispatch()
     
     
-    const businesses = useSelector(state => state.businesses.allBusinessess)
+    // const businesses = useSelector(state => state.businesses.allBusinessess)
+    const businesses = useSelector(state => state.business.allBusinessess)
     
     useEffect(() => {
         dispatch(getBusinesses())

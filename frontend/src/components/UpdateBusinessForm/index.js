@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom'
 
-import * as NewBusiness from '../../store/business'
+// import * as NewBusiness from '../../store/business'
+import {SingleBusinesses} from '../../store/0business'
+import {EditBusiness} from '../../store/0business'
 
 import './LoginForm.css'
 
@@ -65,7 +67,7 @@ function UpdateBusinessForm() {
     const business = useSelector(state => state.businesses.oneBusiness);
     
     useEffect(()=>{
-        dispatch(NewBusiness.SingleBusinesses(id))
+        dispatch(SingleBusinesses(id))
     },[dispatch,business])
 
 
@@ -102,7 +104,7 @@ function UpdateBusinessForm() {
         e.preventDefault();
         const ownerId = sessionUser.id
         const payLoad ={id,ownerId,title,description,image,address,city,state,zipCode}
-        dispatch(NewBusiness.EditBusiness(payLoad))
+        dispatch(EditBusiness(payLoad))
         history.push(`/${business.id}`)
         return
     }

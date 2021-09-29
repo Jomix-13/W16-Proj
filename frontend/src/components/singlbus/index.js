@@ -1,5 +1,6 @@
 import {useDispatch,useSelector} from 'react-redux'
-import * as NewBusiness from '../../store/business'
+// import * as NewBusiness from '../../store/business'
+import {DeleteBusiness} from '../../store/0business'
 import { useHistory, useParams } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
@@ -21,7 +22,7 @@ function Singelbus(){
                     <button 
                     type='button'
                     onClick={
-                        () => {dispatch(NewBusiness.DeleteBusiness(business))
+                        () => {dispatch(DeleteBusiness(business))
                         history.push('/')
                         }
                     }

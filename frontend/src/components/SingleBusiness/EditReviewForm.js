@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
 // import { SingleBusinesses } from '../../store/business';
-import {EditReview} from '../../store/business'
+// import {EditReview} from '../../store/business'
+import {EditReview} from '../../store/0review'
 
 const EditReviewForm = ({ revieww, hideForm }) => {
   const dispatch = useDispatch();

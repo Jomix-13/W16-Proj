@@ -10,12 +10,16 @@ const usersRouter = require('./users.js');
 const businessesRouter = require('./businesses.js');
 const singleRouter = require('./singleBusiness.js');
 const createRouter = require('./nweBusiness.js');
+const business = require('./0business');
+const review = require('./0review');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/feature', createRouter);
 router.use('/businesses', businessesRouter);
 router.use('/business', singleRouter);
+router.use('/businesso', business);
+router.use('/review', review);
 
 
 router.get(

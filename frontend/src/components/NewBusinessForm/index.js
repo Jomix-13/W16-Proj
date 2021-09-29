@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
-import * as NewBusiness from '../../store/business'
+// import * as NewBusiness from '../../store/business'
+import {addBusiness} from '../../store/0business'
 
 const STATES =[
     "AL",
@@ -88,7 +89,7 @@ function NewBusinessForm() {
     const handleSubmit = () => {
         const ownerId = sessionUser.id
         history.push('/')
-        return dispatch(NewBusiness.addBusiness({ownerId,title,description,image,address,city,state,zipCode}))
+        return dispatch(addBusiness({ownerId,title,description,image,address,city,state,zipCode}))
     }
 
     return(

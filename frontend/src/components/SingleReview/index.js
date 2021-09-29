@@ -1,6 +1,7 @@
 import {useDispatch,useSelector} from 'react-redux'
 import {useState} from 'react'
-import {DeleteReview,SingleBusinesses} from '../../store/business'
+// import {DeleteReview,SingleBusinesses} from '../../store/business'
+import {DeleteReview} from '../../store/0review'
 import EditReviewForm from '../SingleBusiness/EditReviewForm'
 import { useHistory } from 'react-router'
 import { Link, NavLink } from 'react-router-dom'
