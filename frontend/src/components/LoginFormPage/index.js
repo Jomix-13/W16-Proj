@@ -50,9 +50,12 @@ useEffect(()=>{
     <>
     <div className='formcontainer'>  
       <form className='form' onSubmit={handleSubmit}>
+        <div className='ediv'>
         <ul className='error'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        </div>
+        <div className='inputdiv'>
           <label className='loginLable'>
             Username or Email
             <input
@@ -75,6 +78,7 @@ useEffect(()=>{
               required
               />
           </label>
+          </div>
         <button 
           disabled={errors.length ? true : false}
           type="submit">

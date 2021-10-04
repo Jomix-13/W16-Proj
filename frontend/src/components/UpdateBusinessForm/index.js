@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom'
 
-import * as NewBusiness from '../../store/business'
+// import * as NewBusiness from '../../store/business'
+import {SingleBusinesses} from '../../store/0business'
+import {EditBusiness} from '../../store/0business'
 
 import './LoginForm.css'
 
@@ -62,11 +64,12 @@ function UpdateBusinessForm() {
     const dispatch = useDispatch()
     const {id} = useParams()
     
-    useEffect(()=>{
-        dispatch(NewBusiness.SingleBusinesses(id))
-    },[dispatch])
-
     const business = useSelector(state => state.businesses.oneBusiness);
+    
+    useEffect(()=>{
+        dispatch(SingleBusinesses(id))
+    },[dispatch,business])
+
 
     
     const sessionUser = useSelector((state) => state.session.user);
@@ -101,7 +104,7 @@ function UpdateBusinessForm() {
         e.preventDefault();
         const ownerId = sessionUser.id
         const payLoad ={id,ownerId,title,description,image,address,city,state,zipCode}
-        dispatch(NewBusiness.EditBusiness(payLoad))
+        dispatch(EditBusiness(payLoad))
         history.push(`/${business.id}`)
         return
     }
@@ -121,7 +124,6 @@ function UpdateBusinessForm() {
                     <li key={error}>{error}</li>
                 ))}
                 </ul>
-
                 <label className='loginLable'> Business Name
                     <input
                     placeholder='Business Name'
@@ -131,7 +133,7 @@ function UpdateBusinessForm() {
                     onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
-            
+                            
                 <label className='loginLable'> Business Description
                     <input
                     placeholder='Business Description'

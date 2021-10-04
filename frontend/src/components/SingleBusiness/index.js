@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom'
 
-import {SingleBusinesses} from '../../store/business'
-import {addReview} from '../../store/business'
+import {SingleBusinesses} from '../../store/0business'
+import {getReviews,addReview,EditReview,DeleteReview} from '../../store/0review'
+// import {SingleBusinesses} from '../../store/business'
+// import {addReview} from '../../store/business'
 import SingelReview from '../SingleReview'
 import Singelbus from '../singlbus'
 
@@ -18,15 +20,18 @@ function OneBusiness(){
     const dispatch = useDispatch()
     const {businessId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
-    const business = useSelector(state => state.businesses.oneBusiness);  
-
-
+    const business = useSelector(state => state.business.oneBusiness);  
+    // const business = useSelector(state => state.businesses.oneBusiness);  
+    const reviews = useSelector(state => state.review.allReviews); 
+    
+    
     const [review,setReview] = useState('')
     const [rating,setRating] = useState('')
     const [errors,setErrors] = useState('')    
     
     useEffect(() => {
-        dispatch(SingleBusinesses(businessId))
+      dispatch(SingleBusinesses(businessId))
+      dispatch(getReviews())
     },[dispatch])
     
     useEffect(() => {
@@ -38,7 +43,7 @@ function OneBusiness(){
     },[review, rating])
     
     function formHandeler(e){
-      // e.preventDefault()
+      e.preventDefault()
       const userId = sessionUser.id
       setReview('')
       setRating('')
@@ -52,7 +57,7 @@ function OneBusiness(){
         <div>
           <ul className='title'>{business.title}</ul>
           <ul className='type'>{business.description}</ul>
-          <li>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
+          <li className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
           <img className='busimage' src={business.image} alt=''></img>
           <Singelbus></Singelbus>
           <form 
@@ -64,6 +69,7 @@ function OneBusiness(){
                 <li key={error}>{error}</li>
             ))}
             </ul>
+            <div>
               <label className='reviewLable'>Review
                <input
                 placeholder="Please tell us your experience.."
@@ -73,6 +79,8 @@ function OneBusiness(){
                 onChange={(e) => setReview(e.target.value)}
                 />
               </label>
+              </div>
+              <div>
               <label className='reviewLable'>Rating
                 <input
                 placeholder="1 - 5"
@@ -83,20 +91,44 @@ function OneBusiness(){
                 onChange={(e) => setRating(e.target.value)}
                 />
               </label>
+              </div>
+              <div>
               <button
               disabled={errors.length ? true : false}
               type="submit"
               >
               Add Review</button>
+              </div>
           </form>
 
         <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>
         <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
-        {business?.Reviews?.length > 0 && business.Reviews.map(review => {
+        <div>
+        {/* {reviews?.map((rev)=>{
           return(
-            <SingelReview key={review.id} review={review}></SingelReview>
-            )
-        })}
+            // <div className='review'>{rev.answer}</div>
+            // )
+          
+          rev.businessId === business.id ? 
+          <div className='review'>
+            {rev.answer}
+            {rev.userId === sessionUser.id ?
+            <>
+            <button>Edit</button>
+            <button>Delete</button>
+            </>
+            : null
+            }
+          </div>
+          : null
+          )
+        })} */}
+        {/* {business?.Reviews?.length > 0 && business.Reviews.map(review => {
+          return( */}
+            <SingelReview className='singleReview' key={review.id} review={review}></SingelReview>
+            {/* )
+          })} */}
+          </div>
         </div>
       )}
     </>

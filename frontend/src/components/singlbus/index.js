@@ -1,5 +1,6 @@
 import {useDispatch,useSelector} from 'react-redux'
-import * as NewBusiness from '../../store/business'
+// import * as NewBusiness from '../../store/business'
+import {DeleteBusiness} from '../../store/0business'
 import { useHistory, useParams } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
@@ -11,7 +12,8 @@ function Singelbus(){
 
     const sessionUser = useSelector((state) => state.session.user);
 
-    const business = useSelector(state => state.businesses.oneBusiness);  
+    // const business = useSelector(state => state.businesses.oneBusiness);  
+    const business = useSelector(state => state.business.oneBusiness);  
     // const business = businesses.find(business => business.id === Number(businessId))
 
     return(
@@ -21,7 +23,7 @@ function Singelbus(){
                     <button 
                     type='button'
                     onClick={
-                        () => {dispatch(NewBusiness.DeleteBusiness(business))
+                        () => {dispatch(DeleteBusiness(business))
                         history.push('/')
                         }
                     }

@@ -4,9 +4,6 @@ import {csrfFetch} from './csrf'
 
 const GET_BUSINESSES= 'buiness/GET_BUSINESSES'
 const ONE_BUSINESS= 'business/ONE_BUSINESS'
-const ADD_REVIEW = 'add review'
-const DELETE_REVIEW = 'delete review'
-const EDIT_REVIEW = 'edit review'
 const ADD_BUSINESS ='add business'
 const DELETE_BUSINESS = 'delete business'
 const EDIT_BUSINESS = 'edit business'
@@ -22,19 +19,6 @@ const oneBusiness = business => ({
     business,
   });
 
-const addRevieww = (review) =>({
-    type: ADD_REVIEW,
-    review,
-})
-
-const removeReview = (review) =>({
-    type: DELETE_REVIEW,
-    review,
-})
-const editReview = (review) =>({
-    type: EDIT_REVIEW,
-    review,
-})
 const add = (business) =>({
   type: ADD_BUSINESS,
   business,
@@ -51,7 +35,7 @@ const edit = (business) =>({
 //Thunk
 export const getBusinesses = () => async dispatch => {
   
-    const response = await fetch(`/api/businesses`);
+    const response = await fetch(`/api/businesso`);
   
     if (response.ok) {
       const list = await response.json();
@@ -60,7 +44,7 @@ export const getBusinesses = () => async dispatch => {
   };
 
 export const SingleBusinesses = (businessId) => async dispatch => {
-  const response = await fetch(`/api/business/${businessId}`);
+  const response = await fetch(`/api/businesso/${businessId}`);
   
   if (response.ok) {
     const business = await response.json();
@@ -69,51 +53,9 @@ export const SingleBusinesses = (businessId) => async dispatch => {
       return business
     }
 };
-export const addReview =({review,rating,businessId,userId}) => async (dispatch) =>{
-  const response = await csrfFetch(`/api/business`,
-  {method:'POST',
-  headers:{'Content-Type' : 'application/json'},
-  body: JSON.stringify({review,rating,businessId,userId})
-  });
-  
-  if (response.ok) {
-    const review = await response.json();
-    dispatch(addRevieww(review));
-    return review
-  }
-}
-export const DeleteReview = (review) => async dispatch => {
-
-  const response = await csrfFetch(`/api/business/${review.id}`,{
-    method:'DELETE',
-    headers:{'Content-Type' : 'application/json'},
-    body: JSON.stringify(review)
-  });
-  if (response.ok) {
-    await response.json();
-    dispatch(removeReview(review));
-    return review
-  }
-};
-
-export const EditReview = (review) => async (dispatch) =>{
-  
-
-  const response = await csrfFetch(`/api/business/${review.id}`,
-  {method:'PUT',
-  headers:{'Content-Type' : 'application/json'},
-  body: JSON.stringify(review)
-  });
-  
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(editReview(data));
-    return review
-  }
-}
 
 export const addBusiness =({ownerId,title,description,image,address,city,state,zipCode}) => async (dispatch) =>{
-  const response = await csrfFetch(`/api/feature/new`,
+  const response = await csrfFetch(`/api/businesso/new`,
   {method:'POST',
   headers:{'Content-Type' : 'application/json'},
   body: JSON.stringify({ownerId,title,description,image,address,city,state,zipCode})
@@ -127,7 +69,7 @@ export const addBusiness =({ownerId,title,description,image,address,city,state,z
 }
 
 export const DeleteBusiness = (business) => async dispatch => {
-  const response = await csrfFetch(`/api/feature/${business.id}`,{
+  const response = await csrfFetch(`/api/businesso/${business.id}`,{
     method:'DELETE',
     headers:{'Content-Type' : 'application/json'},
     body: JSON.stringify(business)
@@ -143,7 +85,7 @@ export const DeleteBusiness = (business) => async dispatch => {
 
 export const EditBusiness = (business) => async (dispatch) =>{
 
-  const response = await csrfFetch(`/api/business/update/${business.id}`,
+  const response = await csrfFetch(`/api/businesso/update/${business.id}`,
   {method:'PUT',
   headers:{'Content-Type' : 'application/json'},
   body: JSON.stringify(business)
@@ -162,7 +104,7 @@ const intialState = {
   }
 
   //Reducer
-  const BusinessReducer = (state = intialState, action) => {
+  const BusinessoReducer = (state = intialState, action) => {
     
     switch (action.type) {
       case GET_BUSINESSES: {
@@ -192,38 +134,10 @@ const intialState = {
           oneBusiness : action.business.business
         };
       }
-      case ADD_REVIEW: {
-        return {
-          ...state,
-          oneBusiness:{
-            Reviews: [...state.oneBusiness.Reviews,action.review]
-          }
-        }        
-      }
-      case EDIT_REVIEW:{
-        let allreviewsArr = state.oneBusiness.Reviews
-        let filteredReviews = allreviewsArr.filter(review=> review.id !== action.review.review.id)
-        return {
-          ...state,
-          oneBusiness:{
-            Reviews: [action.review.review,...filteredReviews]
-          }
-        }
-      }
-      case DELETE_REVIEW: {
-        let allreviewsArr = state.oneBusiness.Reviews
-        let filteredReviews = allreviewsArr.filter(review=> review.id !== action.review.id)
-        return {
-          ...state,
-          oneBusiness: {
-            Reviews:[...filteredReviews]
-          }
-        };
-      }
       default:
         return state;
     }
   }
 
-export default BusinessReducer
+export default BusinessoReducer
 
