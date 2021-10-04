@@ -12,7 +12,8 @@ function Singelbus(){
 
     const sessionUser = useSelector((state) => state.session.user);
 
-    const business = useSelector(state => state.businesses.oneBusiness);  
+    // const business = useSelector(state => state.businesses.oneBusiness);  
+    const business = useSelector(state => state.business.oneBusiness);  
     // const business = businesses.find(business => business.id === Number(businessId))
 
     return(

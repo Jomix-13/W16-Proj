@@ -10,7 +10,34 @@ const { User } = require('../../db/models');
 
 // get all reviews
 
+router.get(
+  '/',
+  asyncHandler(
+      async (req, res) => {
+        const reviews = await Review.findAll({
+          include: {
+            model: User,
+        },
+          order:[['createdAt', 'DESC']]
+        });
+          return await res.json(reviews);
+      })
+);
+
 // get one review
+router.get(
+  '/:reviewId',
+  asyncHandler(
+    async (req, res) => {
+      const id = req.params.reviewId
+      const review = await Review.findByPk(id,{
+          include: {
+            model: User
+        },
+      });
+    return await res.json(review);
+  })
+);
 
 router.post(
   '/',
@@ -35,9 +62,11 @@ router.put(
           const review = await Review.findByPk(id
             ,{include: User,}
             )
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',req.body.rating)
           await review.update( 
             {answer: req.body.review, rating: req.body.rating}
            );
+           await review.save()
           return await res.json({review});
     })
 );

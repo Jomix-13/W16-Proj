@@ -3,7 +3,10 @@ import {csrfFetch} from './csrf'
 // import {DeleteReview} from './reviews'
 
 //get all reviews
+const GET_ALLREVIEWS = 'get all reviews'
 //get one review
+const GET_REVIEW = 'get review'
+
 const ADD_REVIEW = 'add review'
 const DELETE_REVIEW = 'delete review'
 const EDIT_REVIEW = 'edit review'
@@ -11,6 +14,14 @@ const EDIT_REVIEW = 'edit review'
 
 //action creator
 
+const getAllReviews = (list) =>({
+    type: GET_ALLREVIEWS,
+    list,
+})
+const getOneReview = (review) =>({
+    type: GET_REVIEW,
+    review,
+})
 const addRevieww = (review) =>({
     type: ADD_REVIEW,
     review,
@@ -27,6 +38,15 @@ const editReview = (review) =>({
 
 
 //Thunk
+export const getReviews = () => async dispatch => {
+  
+  const response = await fetch(`/api/review`);
+
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(getAllReviews(list));
+  }
+};
 
 export const addReview =({review,rating,businessId,userId}) => async (dispatch) =>{
   const response = await csrfFetch(`/api/business`,
@@ -58,7 +78,7 @@ export const DeleteReview = (review) => async dispatch => {
 export const EditReview = (review) => async (dispatch) =>{
   
 
-  const response = await csrfFetch(`/api/business/${review.id}`,
+  const response = await csrfFetch(`/api/review/${review.id}`,
   {method:'PUT',
   headers:{'Content-Type' : 'application/json'},
   body: JSON.stringify(review)
@@ -81,33 +101,44 @@ const intialState = {
   const ReviewReducer = (state = intialState, action) => {
     
     switch (action.type) {
+      case GET_ALLREVIEWS: {
+        return {
+          ...state,
+          allReviews:action.list
+        }        
+      }
+      case GET_REVIEW:{
+        return{
+          ...state,
+          oneReview:action.review,
+        };
+      };
       case ADD_REVIEW: {
         return {
           ...state,
-          oneBusiness:{
-            Reviews: [...state.oneBusiness.Reviews,action.review]
-          }
+          // oneBusiness:{
+          //   Reviews: [...state.oneBusiness.Reviews,action.review]
+        // }
+        allReviews :[action.review,...state.allReviews]
         }        
       }
       case EDIT_REVIEW:{
-        let allreviewsArr = state.oneBusiness.Reviews
-        let filteredReviews = allreviewsArr.filter(review=> review.id !== action.review.review.id)
-        return {
-          ...state,
-          oneBusiness:{
-            Reviews: [action.review.review,...filteredReviews]
-          }
-        }
+        const newState = { ...state };
+            newState.allReviews.forEach((review) => {
+                if (review.id === action.review.review.id) {
+                    review.answer = action.review.review.answer;      
+                    review.rating = action.review.review.rating;      
+                }
+            });
+            return newState;
       }
       case DELETE_REVIEW: {
-        let allreviewsArr = state.oneBusiness.Reviews
-        let filteredReviews = allreviewsArr.filter(review=> review.id !== action.review.id)
+        // let allreviewsArr = state.oneBusiness.Reviews
+        let filteredReviews = state.allReviews.filter(review=> review.id !== action.review.id)
         return {
           ...state,
-          oneBusiness: {
-            Reviews:[...filteredReviews]
+          allReviews :[...filteredReviews]
           }
-        };
       }
       default:
         return state;

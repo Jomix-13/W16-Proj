@@ -49,7 +49,6 @@ export const SingleBusinesses = (businessId) => async dispatch => {
   if (response.ok) {
     const business = await response.json();
     dispatch(oneBusiness(business));
-    console.log('THUNK, from Back to Front',business)
     
       return business
     }

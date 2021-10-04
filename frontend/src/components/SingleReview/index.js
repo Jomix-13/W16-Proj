@@ -1,7 +1,9 @@
 import {useDispatch,useSelector} from 'react-redux'
 import {useState} from 'react'
 // import {DeleteReview,SingleBusinesses} from '../../store/business'
-import {DeleteReview} from '../../store/0review'
+// import {DeleteReview} from '../../store/0review'
+import {getReviews,DeleteReview} from '../../store/0review'
+
 import EditReviewForm from '../SingleBusiness/EditReviewForm'
 import { useHistory } from 'react-router'
 import { Link, NavLink } from 'react-router-dom'
@@ -11,17 +13,87 @@ function SingelReview({review}){
     const history = useHistory()
     const dispatch = useDispatch()
     const [showEditReviewForm,setShowEditReviewForm] = useState(false)
+    const [editClicked, setEditClicked] = useState(false);
+    const [targetId, setTargetId] = useState("");
+
     const sessionUser = useSelector((state) => state.session.user);
-    const business = useSelector(state => state.businesses.oneBusiness);  
+    const reviews = useSelector(state => state.review.allReviews); 
+
+    const business = useSelector(state => state.business.oneBusiness);  
 
     function Redirect(){
         window.location = `/business/${business.id}`
     }
 
+    function rating(rev){
+        if(rev.rating === 1) return '⭐️'
+        if(rev.rating === 2) return '⭐️⭐️'
+        if(rev.rating === 3) return '⭐️⭐️⭐️'
+        if(rev.rating === 4) return '⭐️⭐️⭐️⭐️'
+        if(rev.rating === 5) return '⭐️⭐️⭐️⭐️⭐️'
+    }
+
 
     return(
-        <div key={review.id}>
-            <ul className='SingleReview'> {review?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
+        <div classname='AllRevs'>
+        <div>
+        {reviews?.map((rev)=>{
+          return(
+            // <div className='review'>{rev.answer}</div>
+            // )
+          
+          rev.businessId === business.id ? 
+          <div className='review'>
+            {rev.User.username} : {rev.answer} -- {rev.rating} ⭐️
+            {/* {rev.rating === 1 && '⭐️'}
+            {rev.rating === 2 && '⭐️⭐️'}
+            {rev.rating === 3 && '⭐️⭐️⭐️'}
+            {rev.rating === 4 && '⭐️⭐️⭐️⭐️'}
+            {rev.rating === 5 && '⭐️⭐️⭐️⭐️⭐️'} */}
+            {rev.userId === sessionUser.id ?
+            <>
+            <button
+             type='button'
+             value='Redirect Me'
+             onClick={() => 
+                {
+                    dispatch(DeleteReview(rev))
+                }
+            }>
+                 Delete
+            </button>
+            <button
+            onClick={() => {
+                setShowEditReviewForm(true)
+                setEditClicked(!editClicked);
+                setTargetId(rev.id)
+            }}
+            >
+                Edit
+            </button>
+                {showEditReviewForm && editClicked && rev.id === targetId ?
+                <EditReviewForm revieww={rev} hideForm={setShowEditReviewForm}/>
+                : null
+                }
+            </>
+            : null
+            }
+          </div>
+          : null
+          )
+        })}
+        </div>
+        {/* <div>
+        {showEditReviewForm && 
+                <EditReviewForm revieww={rev} hideForm={setShowEditReviewForm}></EditReviewForm>
+                }
+        </div> */}
+
+
+        
+        {/* <div key={review.id}>
+            <ul className='SingleReview'> 
+            {review?.User?.username} :{review.answer} -- {review.rating} ⭐️</ul>
             {sessionUser && sessionUser.id === review.userId && (    
                 <div className='container'>
                 <button 
@@ -34,9 +106,7 @@ function SingelReview({review}){
                     }
                 }
                 className='small'>
-                    {/* <NavLink to={`{/${business.id}`}> */}
                         Delete review
-                    {/* </NavLink> */}
                 </button>
 
                 <button 
@@ -50,6 +120,7 @@ function SingelReview({review}){
 
                 </div>
             )} 
+        </div> */}
         </div>
     )
 }

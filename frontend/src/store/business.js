@@ -60,13 +60,11 @@ export const getBusinesses = () => async dispatch => {
   };
 
 export const SingleBusinesses = (businessId) => async dispatch => {
-  console.log('THUNK, from Front to back',SingleBusinesses)
   const response = await fetch(`/api/business/${businessId}`);
   
   if (response.ok) {
     const business = await response.json();
     dispatch(oneBusiness(business));
-    console.log('THUNK, from Back to Front',business)
     
       return business
     }
