@@ -63,14 +63,16 @@ const STATES =[
 function UpdateBusinessForm() {
     const dispatch = useDispatch()
     const {id} = useParams()
-    
-    const business = useSelector(state => state.businesses.oneBusiness);
+    // const business = useSelector(state => state.business.oneBusiness);
+    // dispatch(SingleBusinesses(id)).then((data)=>setBusiness(data))
+    const [business, setBusiness] = useState(useSelector(state => state.business.oneBusiness))
+    // debugger
     
     useEffect(()=>{
-        dispatch(SingleBusinesses(id))
-    },[dispatch,business])
+        dispatch(SingleBusinesses(id)).then((data)=>setBusiness(data))
+    },[dispatch])
 
-
+    // if(!business)
     
     const sessionUser = useSelector((state) => state.session.user);
     const history = useHistory()
@@ -86,6 +88,17 @@ function UpdateBusinessForm() {
     const [errors, setErrors] = useState([])
 
     useEffect(()=>{
+        setTitle(business.title)
+        setDescription(business.description)
+        setAddress(business.address)
+        setCity(business.city)
+        setState(business.state)
+        setZipCode(business.zipCode)
+        setImage(business.image)
+    },[business])
+    
+    useEffect(()=>{
+
         const errorHandler =[]
 
         if(!title) errorHandler.push('please enter business name')
@@ -96,7 +109,8 @@ function UpdateBusinessForm() {
         if(!zipCode || zipCode.length !== 5) errorHandler.push('please enter valid Zip Code')
 
         setErrors(errorHandler)
-    },[business])
+    },[title,description,image,address,city,zipCode])
+    // },[business.title,business.description,business.image,business.address,business.city,business.zipCode])
 
 
 
@@ -111,8 +125,22 @@ function UpdateBusinessForm() {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        // history.push(`/${business.id}`)
-      };
+        history.push(`/${business.id}`)
+    };
+
+
+    
+    // const setTitleFunc = (e) =>{
+    //     e.preventDefault();
+
+    // }
+    // if (!title){
+    //     return(
+    //         <div>Loading...</div>
+    //     )
+    // }else{
+
+    
     return(
     <>
         <div className='formcontainer'>  
@@ -211,8 +239,7 @@ function UpdateBusinessForm() {
         </div>
     </>  
     )
-
-
+// }
 }
 
 export default UpdateBusinessForm
