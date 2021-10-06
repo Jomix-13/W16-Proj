@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import FooterNav from "./components/FooterNav";
 import HomePage from  './components/Homepage'
 import OneBusiness from  './components/SingleBusiness'
 import NewBusinessForm from  './components/NewBusinessForm'
@@ -47,6 +48,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <FooterNav/>
       
     </>
   );

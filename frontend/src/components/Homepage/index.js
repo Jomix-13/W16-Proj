@@ -16,6 +16,8 @@ function HomePage(){
     
     // const businesses = useSelector(state => state.businesses.allBusinessess)
     const businesses = useSelector(state => state.business.allBusinessess)
+    const reviews = useSelector(state => state.review.allReviews); 
+
     
     useEffect(() => {
         dispatch(getBusinesses())

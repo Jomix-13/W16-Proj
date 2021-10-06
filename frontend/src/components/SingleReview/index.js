@@ -21,9 +21,6 @@ function SingelReview({review}){
 
     const business = useSelector(state => state.business.oneBusiness);  
 
-    function Redirect(){
-        window.location = `/business/${business.id}`
-    }
 
     function rating(rev){
         if(rev.rating === 1) return '⭐️'
@@ -38,10 +35,9 @@ function SingelReview({review}){
         <div classname='AllRevs'>
         <div>
         {reviews?.map((rev)=>{
-          return(
+            return(
             // <div className='review'>{rev.answer}</div>
             // )
-          
           rev.businessId === business.id ? 
           <div className='review'>
             {rev.User.username} : {rev.answer} -- {rev.rating} ⭐️

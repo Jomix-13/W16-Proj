@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
-          <ul><Link to={'/new'}> Add a buiness</Link></ul>
+          <Link to={'/new'}> Add a buiness</Link>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>

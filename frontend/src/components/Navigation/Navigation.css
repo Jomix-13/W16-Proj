@@ -16,9 +16,16 @@
     font-size: 17px;
     border: 1px solid white;
     border-radius: 15px;
+    
 }
-/* .navbutt{
-    padding: 10px;
+.navbutts{
+    display: flex;
+    flex-direction: row;
+}
+
+/* .topnav2{
+    display: flex;
+    flex-direction: column;
 } */
 
 .topnav a:hover {
@@ -30,12 +37,7 @@
     
 }
 
-.topnav a.active {
-    background-color: rgb(184, 184, 8);
-    color: white;
-    border: 1px solid white;
-    border-radius: 25px
-}
+
 
 .topnav input[type=text] {
     float: right;
@@ -64,23 +66,35 @@ input :focus{
     outline: none;
     color: white;
 }
+.topnav a.active {
+    background-color: rgb(184, 184, 8);
+    color: white;
+    border: 1px solid white;
+    border-radius: 25px
+}
 
 button {
-    /* list-style-type: none; */
     background-color: rgb(184, 184, 8);
     border: 1px solid black;
     border-radius: 15px;
     font-weight:bold;
+    font: 17px Times;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor:progress;
-    width: 30%;
-    opacity: 0.9;
+    padding: 14px 16px;
+    height: auto;
+    width: auto;
+    border: 1px solid white;
+    overflow: hidden;
+
 }
+
 button:hover {
     opacity:1;
+}
+
+
+.AddBusiness a{
+    text-decoration: none;
 }
 
 

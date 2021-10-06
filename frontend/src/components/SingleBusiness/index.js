@@ -51,12 +51,36 @@ function OneBusiness(){
       // history.push(`/${businessId}`)
       }
 
+    function reviewAvrage(reviews){
+      let total = 0
+      let sum = 0
+      // console.log('reviews',reviews)
+      for (let i = 0; i < reviews.length;i++){
+        console.log('reviews',reviews)
+        if (reviews[i].businessId === business.id){
+          console.log('review 1',reviews[i])
+          console.log('rating',reviews[i].rating)
+          total = total+reviews[i].rating
+          sum ++
+          if (sum === 0){
+            console.log(total)
+            console.log(sum)
+            return 'No rating available'
+          }
+        }
+      }
+      console.log(total)
+      console.log(sum)
+      return total/sum
+    }
+
   return(
     <>
       {!!business &&(
         <div>
           <ul className='title'>{business.title}</ul>
           <ul className='type'>{business.description}</ul>
+          <ul className='rating'>Over all rating : {reviewAvrage(reviews)} ⭐️</ul>
           <li className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
           <img className='busimage' src={business.image} alt=''></img>
           <Singelbus></Singelbus>
@@ -100,34 +124,8 @@ function OneBusiness(){
               Add Review</button>
               </div>
           </form>
-
-        <div hidden={!!business?.Reviews?.length ? false : true} className='reviews' >Reviews</div>
-        <div hidden={!!business?.Reviews?.length ? true : false} className='reviews' >No reviews available</div>
         <div>
-        {/* {reviews?.map((rev)=>{
-          return(
-            // <div className='review'>{rev.answer}</div>
-            // )
-          
-          rev.businessId === business.id ? 
-          <div className='review'>
-            {rev.answer}
-            {rev.userId === sessionUser.id ?
-            <>
-            <button>Edit</button>
-            <button>Delete</button>
-            </>
-            : null
-            }
-          </div>
-          : null
-          )
-        })} */}
-        {/* {business?.Reviews?.length > 0 && business.Reviews.map(review => {
-          return( */}
             <SingelReview className='singleReview' key={review.id} review={review}></SingelReview>
-            {/* )
-          })} */}
           </div>
         </div>
       )}
