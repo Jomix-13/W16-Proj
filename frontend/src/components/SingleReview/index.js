@@ -40,14 +40,20 @@ function SingelReview({review}){
             // )
           rev.businessId === business.id ? 
           <div className='review'>
-            {rev.User.username} : {rev.answer} -- {rev.rating} ⭐️
-            {/* {rev.rating === 1 && '⭐️'}
+            <div className='user'>{rev.User.username}</div>
+            <div className='rev'>{rev.answer}</div>
+            <div className='stars'>{rating(rev)}</div>
+            <div className='rate'>{rev.rating} ⭐️</div>
+            <div className='stars'>
+            {rev.rating === 1 && '⭐️'}
             {rev.rating === 2 && '⭐️⭐️'}
             {rev.rating === 3 && '⭐️⭐️⭐️'}
             {rev.rating === 4 && '⭐️⭐️⭐️⭐️'}
-            {rev.rating === 5 && '⭐️⭐️⭐️⭐️⭐️'} */}
+            {rev.rating === 5 && '⭐️⭐️⭐️⭐️⭐️'}
+            </div>
             {rev.userId === sessionUser.id ?
-            <>
+            <div className='form'>
+            <div className='btns'>
             <button
              type='button'
              value='Redirect Me'
@@ -67,15 +73,21 @@ function SingelReview({review}){
             >
                 Edit
             </button>
+            </div>
+            <div className='editForm'>
                 {showEditReviewForm && editClicked && rev.id === targetId ?
                 <EditReviewForm revieww={rev} hideForm={setShowEditReviewForm}/>
                 : null
-                }
-            </>
+            }
+            </div>
+          </div>
             : null
             }
           </div>
           : null
+          //   <div classname='review'>
+          //   No reviews available
+          //   </div>
           )
         })}
         </div>
