@@ -63,8 +63,9 @@ router.put(
             ,{include: User,}
             )
             console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',req.body.rating)
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',typeof(req.body.rating))
           await review.update( 
-            {answer: req.body.review, rating: req.body.rating}
+            {answer: req.body.review, rating: parseInt(req.body.rating)}
            );
            await review.save()
           return await res.json({review});

@@ -24,11 +24,11 @@ function SingelReview({review}){
 
 
     function rating(rev){
-        if(rev == 1) return '⭐️'
-        if(rev == 2) return '⭐️⭐️'
-        if(rev == 3) return '⭐️⭐️⭐️'
-        if(rev == 4) return '⭐️⭐️⭐️⭐️'
-        if(rev == 5) return '⭐️⭐️⭐️⭐️⭐️'
+        if(rev === 1) return '⭐️'
+        if(rev === 2) return '⭐️⭐️'
+        if(rev === 3) return '⭐️⭐️⭐️'
+        if(rev === 4) return '⭐️⭐️⭐️⭐️'
+        if(rev === 5) return '⭐️⭐️⭐️⭐️⭐️'
     }
 
     
@@ -56,7 +56,7 @@ function SingelReview({review}){
                     dispatch(DeleteReview(rev))
                 }
             }>
-                 Delete
+                Delete
             </button>
             <button
             onClick={() => {
