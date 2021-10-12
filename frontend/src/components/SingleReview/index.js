@@ -17,41 +17,35 @@ function SingelReview({review}){
     const [targetId, setTargetId] = useState("");
 
     const sessionUser = useSelector((state) => state.session.user);
-    const reviews = useSelector(state => state.review.allReviews); 
+    const reviews = useSelector(state => state.review.allReviews);
+    console.log(reviews)
 
-    const business = useSelector(state => state.business.oneBusiness);  
+    const business = useSelector(state => state.business.oneBusiness);
 
 
     function rating(rev){
-        if(rev.rating === 1) return '⭐️'
-        if(rev.rating === 2) return '⭐️⭐️'
-        if(rev.rating === 3) return '⭐️⭐️⭐️'
-        if(rev.rating === 4) return '⭐️⭐️⭐️⭐️'
-        if(rev.rating === 5) return '⭐️⭐️⭐️⭐️⭐️'
+        if(rev == 1) return '⭐️'
+        if(rev == 2) return '⭐️⭐️'
+        if(rev == 3) return '⭐️⭐️⭐️'
+        if(rev == 4) return '⭐️⭐️⭐️⭐️'
+        if(rev == 5) return '⭐️⭐️⭐️⭐️⭐️'
     }
 
-
+    
     return(
         <div classname='AllRevs'>
+            <div className='revTitle'>Reviews</div>
         <div>
         {reviews?.map((rev)=>{
             return(
             // <div className='review'>{rev.answer}</div>
             // )
-          rev.businessId === business.id ? 
+          rev?.businessId === business?.id ? 
           <div className='review'>
-            <div className='user'>{rev.User.username}</div>
-            <div className='rev'>{rev.answer}</div>
-            <div className='stars'>{rating(rev)}</div>
-            <div className='rate'>{rev.rating} ⭐️</div>
-            <div className='stars'>
-            {rev.rating === 1 && '⭐️'}
-            {rev.rating === 2 && '⭐️⭐️'}
-            {rev.rating === 3 && '⭐️⭐️⭐️'}
-            {rev.rating === 4 && '⭐️⭐️⭐️⭐️'}
-            {rev.rating === 5 && '⭐️⭐️⭐️⭐️⭐️'}
-            </div>
-            {rev.userId === sessionUser.id ?
+            <div className='user'>{rev?.User?.username}</div>
+            <div className='rev'>{rev?.answer}</div>
+            <div className='stars'>{rating(rev.rating)}</div>
+            {rev?.userId === sessionUser?.id ?
             <div className='form'>
             <div className='btns'>
             <button
