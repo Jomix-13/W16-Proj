@@ -67,7 +67,8 @@ function OneBusiness(){
           return 'No rating available'
         }
       }
-      return `${total/sum} ⭐️`
+      let avrage = Math.round( (total/sum) * 10) / 10
+      return avrage + ' ⭐️'
     }
 
   return(
@@ -80,6 +81,9 @@ function OneBusiness(){
           <li className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
           <img className='busimage' src={business.image} alt=''></img>
           <Singelbus></Singelbus>
+          <div>
+            <SingelReview className='singleReview' key={review.id} review={review}></SingelReview>
+          </div>
           <form 
           hidden={sessionUser? false : true}
           onSubmit={formHandeler}
@@ -89,19 +93,21 @@ function OneBusiness(){
                 <li key={error}>{error}</li>
             ))}
             </ul>
-            <div>
-              <label className='reviewLable'>Review
-               <input
+            
+            <div className='lablediv'>
+            <div className='lablesubdiv'>
+              <label className='reviewLable'>Review</label>
+               <textarea
                 placeholder="Please tell us your experience.."
                 className='signupInput'
                 type="text"
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
                 />
-              </label>
+              
               </div>
-              <div>
-              <label className='reviewLable'>Rating
+              <div className='lablesubdiv'>
+              <label className='reviewLable'>Rating</label>
                 <input
                 placeholder="1 - 5"
                 className='reviewInput'
@@ -110,19 +116,20 @@ function OneBusiness(){
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
                 />
-              </label>
+              
               </div>
-              <div>
+              <div id='AddReviewDiv' >
               <button
               disabled={errors.length ? true : false}
               type="submit"
+              id='AddReview'
               >
               Add Review</button>
               </div>
+              </div>
+                
           </form>
-        <div>
-            <SingelReview className='singleReview' key={review.id} review={review}></SingelReview>
-          </div>
+
         </div>
       )}
     </>

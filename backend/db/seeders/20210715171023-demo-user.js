@@ -11,15 +11,14 @@ module.exports = {
     Example:
     */
       return queryInterface.bulkInsert('Users', [
-        {username: 'Demo',
-        email: 'demo@email.com',
-        hashedPassword: await bcrypt.hashSync('demo', 10)},
-        {username: 'John',
-        email: 'john@email.com',
-        hashedPassword: await bcrypt.hashSync('john', 10)},
-        {username: 'FakeUser1',
-        email: faker.internet.email(),
-        hashedPassword: await bcrypt.hashSync(faker.internet.password())}
+        {username:"Demo",email:"Demo@email.com", hashedPassword:await bcrypt.hashSync("Demo", 10)},
+        {username:"John",email:"John@email.com", hashedPassword:await bcrypt.hashSync("John", 10)},
+        {username:"Vero",email:"Vero@email.com", hashedPassword:await bcrypt.hashSync("Vero", 10)},
+        {username:"Christo",email:"Christo@email.com", hashedPassword:await bcrypt.hashSync("Christo", 10)},
+        {username:"Parthy",email:"Parthy@email.com", hashedPassword:await bcrypt.hashSync("Parthy", 10)},
+        {username:"parto",email:"parto@email.com", hashedPassword:await bcrypt.hashSync("parto", 10)},
+        {username:"Youssef",email:"Youssef@email.com", hashedPassword:await bcrypt.hashSync("Youssef", 10)},
+        {username:"David",email:"David@email.com", hashedPassword:await bcrypt.hashSync("David", 10)},
       ], {});
   },
 
@@ -30,9 +29,9 @@ module.exports = {
 
       Example:
       */
-    const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo','John', 'FakeUser1'] }
-    }, {});
+    // const Op = Sequelize.Op;
+    // return queryInterface.bulkDelete('Users', {
+    //   username: { [Op.in]: ['Demo','John', 'FakeUser1'] }
+    // }, {});
   }
 };

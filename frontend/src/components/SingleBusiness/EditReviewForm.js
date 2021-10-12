@@ -49,7 +49,7 @@ const EditReviewForm = ({ revieww, hideForm }) => {
                 <li key={error}>{error}</li>
             ))}
       </ul>
-      <input
+      <textarea
       className='signupInput'
       type="text"
       value={review}
@@ -62,6 +62,7 @@ const EditReviewForm = ({ revieww, hideForm }) => {
       value={rating}
       onChange={(e) => setRating(e.target.value)}
       />
+      <div>
         <button 
         type="submit"
         disabled={errors.length ? true : false}
@@ -69,6 +70,7 @@ const EditReviewForm = ({ revieww, hideForm }) => {
           Update Review
         </button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
+      </div>
       </form>
     </section>
   );
