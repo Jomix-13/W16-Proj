@@ -56,29 +56,34 @@ function OneBusiness(){
         total = total+reviews[i].rating
         sum ++
       }
-      if (sum === 0){
-        return 'No rating available'
-      }
+
     }
+    if (sum === 0){
+      return 'No rating available'
+    }else{
     let avrage = Math.round( (total/sum) * 10) / 10
     return avrage + ' ⭐️'
+    }
   }
 
   return(
     <>
       {!!business &&(
         <div>
-          <ul className='title'>{business.title}</ul>
-          <ul className='type'>{business.description}</ul>
-          <ul className='rating'>Over all rating : {reviewAvrage(reviews)} </ul>
-          <li className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</li>
+          <div className='infoContainer'>
+          <div className='title'>{business.title}</div>
+          <div className='type'>{business.description}</div>
+          <div className='rating'>Over all rating : {reviewAvrage(reviews)} </div>
+          <div className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</div>
           <img className='busimage' src={business.image} alt=''></img>
+          </div>
           <Singelbus></Singelbus>
           <div>
             <SingelReview className='singleReview' key={review.id} review={review}></SingelReview>
           </div>
+          {sessionUser ? 
           <form 
-          hidden={sessionUser? false : true}
+          // hidden={sessionUser ? false : true}
           onSubmit={formHandeler}
           >
             <ul className='error'>
@@ -122,6 +127,11 @@ function OneBusiness(){
               </div>
                 
           </form>
+          : 
+          <div className='revTitle'>
+            Please Log in to add a review
+          </div>
+          }
 
         </div>
       )}

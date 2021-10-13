@@ -22,9 +22,10 @@ function Singelbus(){
                 <div className='container'>
                     <button 
                     type='button'
+                    id='busbutton'
                     onClick={
                         () => {dispatch(DeleteBusiness(business))
-                        history.push('/')
+                            history.push('/')
                         }
                     }
                     className='small'>
@@ -33,6 +34,7 @@ function Singelbus(){
 
                     <NavLink to={`/update/${businessId}`}>
                     <button 
+                    id='busbutton'
                     className='small'>
                         update Business
                     {/* <NavLink to={`/update/${businessId}`}>update Business</NavLink> */}

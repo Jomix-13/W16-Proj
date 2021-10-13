@@ -48,12 +48,12 @@ function SignupFormPage() {
         {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
       </ul>
       </div>
-      <div className='inputdiv'>
+      {/* <div className='inputdiv'> */}
       <label className='loginLable'>
         Email
         <input
           placeholder="Email"
-          className='loginInput'
+          className='signupInput'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +64,7 @@ function SignupFormPage() {
         Username
         <input
           placeholder="Username"
-          className='loginInput'
+          className='signupInput'
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -75,7 +75,7 @@ function SignupFormPage() {
         Password
         <input
           placeholder="Password"
-          className='loginInput'
+          className='signupInput'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -86,14 +86,14 @@ function SignupFormPage() {
         Confirm Password
         <input
           placeholder="Confirm Password"
-          className='loginInput'
+          className='signupInput'
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
           />
       </label>
-      </div>
+      {/* </div> */}
       <button 
         // disabled={errors.length ? true : false}
         hidden={errors.length ? true : false}

@@ -55,12 +55,12 @@ useEffect(()=>{
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         </div>
-        <div className='inputdiv'>
+        {/* <div className='inputdiv'> */}
           <label className='loginLable'>
             Username or Email
             <input
               placeholder="Username or Email"
-              className='loginInput'
+              className='signupInput'
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
@@ -71,14 +71,14 @@ useEffect(()=>{
             Password
             <input
               placeholder="Password"
-              className='loginInput'
+              className='signupInput'
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               />
           </label>
-          </div>
+          {/* </div> */}
         <button 
           disabled={errors.length ? true : false}
           type="submit">

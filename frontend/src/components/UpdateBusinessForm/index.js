@@ -155,7 +155,7 @@ function UpdateBusinessForm() {
                 <label className='loginLable'> Business Name
                     <input
                     placeholder='Business Name'
-                    className='loginInput'
+                    className='signupInput'
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -165,7 +165,7 @@ function UpdateBusinessForm() {
                 <label className='loginLable'> Business Description
                     <input
                     placeholder='Business Description'
-                    className='loginInput'
+                    className='signupInput'
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -175,7 +175,7 @@ function UpdateBusinessForm() {
                 <label className='loginLable'> image
                     <input
                     placeholder='enter image url'
-                    className='loginInput'
+                    className='signupInput'
                     type="text"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
@@ -185,7 +185,7 @@ function UpdateBusinessForm() {
                 <label className='loginLable'> Street address
                     <input
                     placeholder='Street address'
-                    className='loginInput'
+                    className='signupInput'
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -195,7 +195,7 @@ function UpdateBusinessForm() {
                 <label className='loginLable'> City
                     <input
                     placeholder='City'
-                    className='loginInput'
+                    className='signupInput'
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
@@ -204,7 +204,7 @@ function UpdateBusinessForm() {
 
                 <div className='loginLable'> State
                     <select
-                        className='loginInput'
+                        className='signupInput'
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                         >
@@ -221,7 +221,7 @@ function UpdateBusinessForm() {
                 <label className='loginLable'> zip Code
                     <input
                     placeholder='zip Code'
-                    className='loginInput'
+                    className='signupInput'
                     type="text"
                     value={zipCode}
                     onChange={(e) => setZipCode(e.target.value)}

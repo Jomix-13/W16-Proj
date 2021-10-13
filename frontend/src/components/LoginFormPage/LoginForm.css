@@ -1,31 +1,29 @@
-.loginLable{
-    color: white;
-    font-size:xx-large;
-    display: flex;
-    justify-content: left;
-    justify-content: space-between;
-    margin: 20px;
-
+.loginLable {
+	color: white;
+	font-size: xx-large;
+	display: flex;
+	justify-content: left;
+	justify-content: space-between;
+	margin: 20px;
 }
 
-.error{
-    color: red;
-    font-size: large;
-    background-color: black;
-    opacity: .8;
+.error {
+	color: red;
+	font-size: large;
+	background-color: black;
+	opacity: 0.8;
 }
-.ediv{
-    height: 130px;
+.ediv {
+	height: 130px;
 }
-.inputdiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    width: 50vw;
-
+.inputdiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	width: 50vw;
 }
-/* .loginInput {
+/* .signupInput {
     width: 200px;
     padding: 15px;
     margin: 5px;
@@ -37,14 +35,17 @@
     border-radius: 15px;
     font-size: large;
 } */
-.form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+/* .loginLable{
+    width: max-content;
+} */
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-.formcontainer{
-    display: flex;
-    justify-content: center;
-
+.formcontainer {
+	display: flex;
+	justify-content: center;
 }
