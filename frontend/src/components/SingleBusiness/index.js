@@ -64,6 +64,16 @@ function OneBusiness(){
     }
   }
 
+  function reviewSum(reviews){
+    let sum = 0
+    for (let i = 0; i < reviews.length;i++){
+      if (reviews[i].businessId === business.id){
+        sum ++
+      }
+    }
+    return sum
+  }
+
   return(
     <>
       {!!business &&(
@@ -71,7 +81,7 @@ function OneBusiness(){
           <div className='infoContainer'>
           <div className='title'>{business.title}</div>
           <div className='type'>{business.description}</div>
-          <div className='rating'>Over all rating : {reviewAvrage(reviews)} </div>
+          <div className='rating'>({reviewSum(reviews)}) Reviews with avrage {reviewAvrage(reviews)} </div>
           <div className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</div>
           <img className='busimage' src={business.image} alt=''></img>
           </div>

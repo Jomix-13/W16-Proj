@@ -21,6 +21,7 @@
 .navbutts{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 /* .topnav2{
@@ -118,7 +119,7 @@ button:hover {
 }
 .search-results2 {
   position: absolute;
-  left: 220px;
+  left: 1100px;
   top: 70px;
   border-radius: 20px;
   padding: 10px;
@@ -135,5 +136,14 @@ button:hover {
     font-size: 20px;
     text-decoration: underline;
 
+}
+
+.username{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: yellow;
+    font-size: 30px;
+    width: 200px;
 }
   

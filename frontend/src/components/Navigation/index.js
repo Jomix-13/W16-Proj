@@ -111,14 +111,20 @@ function Navigation({ isLoaded }){
         // <ProfileButton className='topnav2' user={sessionUser}/>
         <div className='navbutts'>
           <div className='topnav'>
-              <NavLink to={'/new'}> Add a buiness</NavLink>
+              <NavLink to={'/new'}> Add a business</NavLink>
           </div>
           <div className='topnav'>
               <button onClick={logout}>Log Out</button>
           </div>
         </div>
       }
-      <div>
+            {sessionUser ? 
+          <div className='username'>
+          Welcome {sessionUser.username}
+          </div>
+          : 
+          <div className='username'></div>}
+      {/* <div> */}
         {/* <input className='searchinput' type="text" placeholder="Search.."/> */}
 
         <div className='i2'>
@@ -153,7 +159,7 @@ function Navigation({ isLoaded }){
                 </form>
             </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
