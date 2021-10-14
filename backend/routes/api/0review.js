@@ -62,8 +62,6 @@ router.put(
           const review = await Review.findByPk(id
             ,{include: User,}
             )
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',req.body.rating)
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',typeof(req.body.rating))
           await review.update( 
             {answer: req.body.review, rating: parseInt(req.body.rating)}
            );

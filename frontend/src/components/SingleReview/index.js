@@ -18,7 +18,6 @@ function SingelReview({review}){
 
     const sessionUser = useSelector((state) => state.session.user);
     const reviews = useSelector(state => state.review.allReviews);
-    console.log(reviews)
 
     const business = useSelector(state => state.business.oneBusiness);
 

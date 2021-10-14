@@ -28,7 +28,6 @@ function OneBusiness(){
   useEffect(() => {
     dispatch(SingleBusinesses(businessId))
     dispatch(getReviews())
-    console.log('COMP',reviews)
   },[dispatch])
   
   useEffect(() => {
@@ -50,7 +49,6 @@ function OneBusiness(){
   function reviewAvrage(reviews){
     let total = 0
     let sum = 0
-    console.log('reviews',reviews)
     for (let i = 0; i < reviews.length;i++){
       if (reviews[i].businessId === business.id){
         total = total+reviews[i].rating

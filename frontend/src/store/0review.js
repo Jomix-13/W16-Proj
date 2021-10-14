@@ -87,7 +87,6 @@ export const EditReview = (review) => async (dispatch) =>{
   if (response.ok) {
     const data = await response.json();
     dispatch(editReview(data));
-    console.log('Thunk',review)
     return review
   }
 }
