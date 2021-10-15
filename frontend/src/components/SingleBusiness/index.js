@@ -81,8 +81,8 @@ function OneBusiness(){
           <div className='infoContainer'>
           <div className='title'>{business.title}</div>
           <div className='type'>{business.description}</div>
-          <div className='rating'>({reviewSum(reviews)}) Reviews with avrage {reviewAvrage(reviews)} </div>
-          <div className='add'>Address :{business.address} {business.city},{business.state}.{business.zipCode}</div>
+          <div className='rating'> {reviewAvrage(reviews)} ({reviewSum(reviews)}) reviews</div>
+          <div className='add'>{business.address} {business.city},{business.state}.{business.zipCode}</div>
           <img className='busimage' src={business.image} alt=''></img>
           </div>
           <Singelbus></Singelbus>

@@ -48,9 +48,10 @@ function SingelReview({review}){
             <div className='form'>
             <div className='btns'>
             <button
-             type='button'
-             value='Redirect Me'
-             onClick={() => 
+                id='buts2'
+                type='button'
+                value='Redirect Me'
+                onClick={() => 
                 {
                     dispatch(DeleteReview(rev))
                 }
@@ -58,11 +59,12 @@ function SingelReview({review}){
                 Delete
             </button>
             <button
-            onClick={() => {
-                setShowEditReviewForm(true)
-                setEditClicked(!editClicked);
-                setTargetId(rev.id)
-            }}
+                id='buts2'
+                onClick={() => {
+                    setShowEditReviewForm(true)
+                    setEditClicked(!editClicked);
+                    setTargetId(rev.id)
+                }}
             >
                 Edit
             </button>

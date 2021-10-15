@@ -85,11 +85,14 @@ button {
     width: auto;
     border: 1px solid white;
     overflow: hidden;
-
 }
+
+
+
 
 button:hover {
     opacity:1;
+    cursor:pointer;
 }
 
 

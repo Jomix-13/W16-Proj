@@ -174,3 +174,14 @@
     flex-direction: row;
     /* box-sizing: border-box; */
 }
+
+/* .btns{
+    padding-left: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} */
+
+#buts2{
+    margin-left: 50px;
+}
