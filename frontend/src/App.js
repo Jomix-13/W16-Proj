@@ -11,6 +11,8 @@ import OneBusiness from  './components/SingleBusiness'
 import NewBusinessForm from  './components/NewBusinessForm'
 import UpdateBusinessForm from  './components/UpdateBusinessForm'
 import {getBusinesses} from './store/business'
+import SplashPage from './components/splash'
+
 
 function App() {
   const dispatch = useDispatch();
@@ -27,13 +29,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+        <Route path='/' exact={true} >
+          <SplashPage></SplashPage>
+        </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path='/'>
+          <Route exact path='/home'>
             <HomePage></HomePage>
           </Route>
           <Route path='/new'>

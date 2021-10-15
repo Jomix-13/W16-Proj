@@ -96,7 +96,7 @@ function Navigation({ isLoaded }){
     // </>
     <div className='navbutts'>
       <div className="topnav">
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/home">Home</NavLink>
       </div>
       {!sessionUser ? 
         <div className='navbutts'>
