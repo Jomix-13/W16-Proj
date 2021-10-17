@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect,useHistory } from 'react-router-dom';
 
 import './LoginForm.css';
 
@@ -12,6 +12,8 @@ function LoginFormPage() {
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
+
+  const history = useHistory()
 
 
 useEffect(()=>{
@@ -38,6 +40,7 @@ useEffect(()=>{
   const demoHandler = (e) => {
     e.preventDefault();
     setErrors([]);
+    history.push('/home')
     return dispatch(sessionActions.loginUser(
       { credential:'Demo', password:'Demo' }))
       .catch(async (res) => {
@@ -56,8 +59,11 @@ useEffect(()=>{
         </ul>
         </div>
         {/* <div className='inputdiv'> */}
+            <div className='loginLablediv'>
+
           <label className='loginLable'>
             Username or Email
+          </label>
             <input
               placeholder="Username or Email"
               className='signupInput'
@@ -66,9 +72,11 @@ useEffect(()=>{
               onChange={(e) => setCredential(e.target.value)}
               required
               />
-          </label>
+              </div>
+            <div className='loginLablediv'>
           <label className='loginLable'>
             Password
+            </label>
             <input
               placeholder="Password"
               className='signupInput'
@@ -77,7 +85,7 @@ useEffect(()=>{
               onChange={(e) => setPassword(e.target.value)}
               required
               />
-          </label>
+              </div>
           {/* </div> */}
         <button 
           disabled={errors.length ? true : false}

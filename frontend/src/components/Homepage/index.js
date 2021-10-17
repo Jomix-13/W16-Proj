@@ -26,13 +26,17 @@ function HomePage(){
         <>
         <div className="grid-container">
         {!!businesses && businesses.map((business)=>(
-        <NavLink  to={`/${business.id}`}>    
-            <div key={business.id} className='busdiv' to={`api/home/${business.id}`} >
-                <li className='busname'>{business.title}</li>
-                <li className='busdes'>{business.description}</li>
+        <NavLink  to={`/${business.id}`} >    
+            <div 
+            style={{ backgroundimage: `{business.image}`}}
+            key={business.id} className='busdiv'  >
                 <img className='image' src={business.image} alt=''></img>
-                <li className='busadd'>{business.address}</li>
-                <li className='busadd2'>{business.city},{business.state}.{business.zipCode}</li>
+                <div className='divpart'>
+                <div className='busname'>{business.title}</div>
+                <div className='busdes'>{business.description}</div>
+                <div className='busadd'>{business.address}, {business.city}</div>
+                </div>
+                {/* <li className='busadd2'>{business.city},{business.state}.{business.zipCode}</li> */}
             </div>
         </NavLink>
         ))}

@@ -1,8 +1,16 @@
 .loginLable {
 	color: white;
-	font-size: xx-large;
+	font-size:large;
 	display: flex;
 	justify-content: left;
+	/* justify-content: space-between; */
+	margin: 20px;
+}
+.loginLablediv {
+	color: white;
+	font-size: xx-large;
+	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	margin: 20px;
 }
@@ -22,6 +30,9 @@
 	justify-content: center;
 	align-content: center;
 	width: 50vw;
+}
+.signupInput {
+	padding-left: 50px;
 }
 /* .signupInput {
     width: 200px;

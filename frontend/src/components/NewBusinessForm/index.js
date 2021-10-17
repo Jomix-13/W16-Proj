@@ -105,8 +105,8 @@ function NewBusinessForm() {
                 ))}
                 </ul>
                 {/* <div className='try'> */}
-                <label className='loginLable'> Business Name
-                {/* </label> */}
+                <div className='loginLablediv'>
+                <label className='loginLable'> Business Name </label>
                     <input
                     placeholder='Business Name'
                     className='signupInput'
@@ -114,10 +114,9 @@ function NewBusinessForm() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     />
-                    </label>
-                    {/* </div> */}
-            
-                <label className='loginLable'> Business Description
+                </div>
+                <div className='loginLablediv'>
+                <label className='loginLable'> Business Description</label>
                     <input
                     placeholder='Business Description'
                     className='signupInput'
@@ -125,9 +124,10 @@ function NewBusinessForm() {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     />
+                </div>
+                <div className='loginLablediv'>
+                <label className='loginLable'> Image
                 </label>
-
-                <label className='loginLable'> image
                     <input
                     placeholder='Please enter image url'
                     className='signupInput'
@@ -135,9 +135,10 @@ function NewBusinessForm() {
                     src={image}
                     onChange={(e) => setImage(e.target.value)}
                     />
-                </label>
-                
+                </div>
+                <div className='loginLablediv'>
                 <label className='loginLable'> Street address
+                </label>
                     <input
                     placeholder='Street address'
                     className='signupInput'
@@ -145,9 +146,10 @@ function NewBusinessForm() {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     />
-                </label>
-
+                </div>
+                <div className='loginLablediv'>
                 <label className='loginLable'> City
+                </label>
                     <input
                     placeholder='City'
                     className='signupInput'
@@ -155,8 +157,8 @@ function NewBusinessForm() {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     />
-                </label>
-                
+                </div>
+                <div className='loginLablediv'>
                 <div className='loginLable'> State
                     <select
                         className='signupInput'
@@ -172,8 +174,10 @@ function NewBusinessForm() {
                         ))}
                     </select>
                 </div>
-
-                <label className='loginLable'> zip Code
+                </div>
+                <div className='loginLablediv'>
+                <label className='loginLable'> Zip Code
+                </label>
                     <input
                     placeholder='zip Code'
                     className='signupInput'
@@ -181,8 +185,7 @@ function NewBusinessForm() {
                     value={zipCode}
                     onChange={(e) => setZipCode(e.target.value)}
                     />
-                </label>
-
+                </div>
                 <button
                 disabled={errors.length ? true : false}
                 type="submit"

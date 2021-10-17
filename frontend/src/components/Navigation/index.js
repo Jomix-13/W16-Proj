@@ -61,6 +61,7 @@ function Navigation({ isLoaded }){
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logoutUser());
+    history.push('/')
   };
 
   const onSubmit = (e) => {
@@ -81,43 +82,33 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    // <>
-    // <div className="topnav">
-    //   <ul>
-    //     <NavLink exact to="/">Home</NavLink>
-    //   </ul>
-    //   {/* <ul>
-    //       <button onClick={logout}>Log Out</button>
-    //   </ul> */}
-    //         <input className='searchinput' type="text" placeholder="Search..">
-    //   </input>
-    //     {isLoaded && sessionLinks}
-    // </div>
-    // </>
+
     <div className='navbutts'>
+    <div className='navbutts2'>
       <div className="topnav">
         <NavLink exact to="/home">Home</NavLink>
       </div>
       {!sessionUser ? 
-        <div className='navbutts'>
-          <div className='topnav'>
-            <NavLink to="/login">Log In</NavLink>
-          </div>
+        <div className='navbutts2'>
           <div className='topnav'>
             <NavLink to="/signup">Sign Up</NavLink>
+          </div>
+          <div className='topnav'>
+            <NavLink to="/login">Log In</NavLink>
           </div>
         </div>
         :
         // <ProfileButton className='topnav2' user={sessionUser}/>
-        <div className='navbutts'>
-          <div className='topnav'>
-              <NavLink to={'/new'}> Add a business</NavLink>
-          </div>
+        <div className='navbutts2'>
           <div className='topnav'>
               <button onClick={logout}>Log Out</button>
           </div>
+          <div className='topnav'>
+              <NavLink to={'/new'}> Add a business</NavLink>
+          </div>
         </div>
       }
+      </div>
             {sessionUser ? 
           <div className='username'>
           Welcome {sessionUser.username}
@@ -140,17 +131,16 @@ function Navigation({ isLoaded }){
                         placeholder='Search...'>
                     </input>
                     {search &&
-
                         <select className='search-results2' onChange={toPage} size={searchTitle.length + searchDescription.length + searchCity.length  + 3}>
-                          <option className='search-results-title'>Search by business Name [{searchTitle.length } result(s)]</option>
+                          <option className='search-results-title'>Business Name [{searchTitle.length } result(s)]</option>
                             {searchTitle.map(business => (
                               <option key={business.id} value={'business' + business.id}>{business.title} - {business.description}</option>
                             ))}
-                          <option className='search-results-title'>Search by business type [{searchDescription.length } result(s)]</option>
+                          <option className='search-results-title'>Business type [{searchDescription.length } result(s)]</option>
                             {searchDescription.map(business => (
                               <option key={business.id} value={'business' + business.id}>{business.description} - {business.title}</option>
                             ))}
-                          <option className='search-results-title'>Search by city [{searchCity.length } result(s)]</option>
+                          <option className='search-results-title'>City [{searchCity.length } result(s)]</option>
                             {searchCity.map(business => (
                               <option key={business.id} value={'business' + business.id}>{business.city} ({business.address}, {business.state}, {business.Zipcode}) - {business.title} {business.description}</option>
                             ))}

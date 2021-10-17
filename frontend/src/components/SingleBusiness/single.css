@@ -114,40 +114,60 @@
 }
 
 .review{
-    color:yellow;
+    /* border: solid yellow 1px ;
+    border-radius: 5px;
+    color:yellow; */
     display:flex;
     flex-direction: row;
-    /* padding-top: 20px; */
+    padding-bottom: 20px;
     margin-top: 20px;
+    height: 50px;
     /* justify-content: space-around; */
 }
 
 .user{
+    border: solid yellow 1px ;
+    border-radius: 50px;
+    color:yellow;
     display:flex;
     justify-content: center;
-    width: 35px;
-    padding-right: 10px;
+    align-items: center;
+    width: 150px;
+    font-size:25px;
+    /* padding-right: 10px;
     margin-right: 20px;
     padding-left: 20px;
     margin-left: 20px;
-    font-size:25px;
-    padding-bottom: 14px;
+    padding-bottom: 14px; */
 }
 .rev{
-    font-size: 20px;
+
+    color: yellow;
+    font-size: 25px;
     display:flex;
     justify-content:flex-start;
+    align-items: center;
     width: 500px;
-    padding-right: 10px;
-    padding-bottom: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+    /* padding-bottom: 15px; */
     margin-right: 10px;
+    border-bottom: solid yellow 1px ;
+
+}
+.starz{
+    padding-left: 20px;
 }
 .stars{
+    border: solid yellow 1px ;
+    border-radius: 50px;
+    color:yellow;
     display:flex;
     justify-content:flex-start;
-    width: 100px;
-    padding-right: 10px;
-    margin-right: 10px;
+    align-items: center;
+    width: 150px;
+    /* padding-right: 10px; */
+    /* margin-right: 10px; */
 }
 .rate{
     display:flex;

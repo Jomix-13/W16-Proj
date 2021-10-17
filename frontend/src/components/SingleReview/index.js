@@ -41,9 +41,16 @@ function SingelReview({review}){
             // )
           rev?.businessId === business?.id ? 
           <div className='review'>
-            <div className='user'>{rev?.User?.username}</div>
+            <div className='user'>
+                {/* <div className='starz'> */}
+                {rev?.User?.username}
+                {/* </div> */}
+            </div>
             <div className='rev'>{rev?.answer}</div>
-            <div className='stars'>{rating(rev.rating)}</div>
+            <div className='stars'>
+                <div className='starz'>
+                    {rating(rev.rating)}</div>
+                </div>
             {rev?.userId === sessionUser?.id ?
             <div className='form'>
             <div className='btns'>

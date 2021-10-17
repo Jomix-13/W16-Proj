@@ -49,8 +49,10 @@ function SignupFormPage() {
       </ul>
       </div>
       {/* <div className='inputdiv'> */}
+      <div className='loginLablediv'>
       <label className='loginLable'>
         Email
+        </label>
         <input
           placeholder="Email"
           className='signupInput'
@@ -59,9 +61,11 @@ function SignupFormPage() {
           onChange={(e) => setEmail(e.target.value)}
           required
           />
-      </label>
+      </div>
+            <div className='loginLablediv'>
       <label className='loginLable'>
         Username
+        </label>
         <input
           placeholder="Username"
           className='signupInput'
@@ -70,9 +74,11 @@ function SignupFormPage() {
           onChange={(e) => setUsername(e.target.value)}
           required
           />
-      </label>
+      </div>
+            <div className='loginLablediv'>
       <label className='loginLable'>
         Password
+        </label>
         <input
           placeholder="Password"
           className='signupInput'
@@ -81,9 +87,11 @@ function SignupFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
           />
-      </label>
+      </div>
+            <div className='loginLablediv'>
       <label className='loginLable'>
         Confirm Password
+        </label>
         <input
           placeholder="Confirm Password"
           className='signupInput'
@@ -92,7 +100,7 @@ function SignupFormPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
           />
-      </label>
+      </div>
       {/* </div> */}
       <button 
         // disabled={errors.length ? true : false}

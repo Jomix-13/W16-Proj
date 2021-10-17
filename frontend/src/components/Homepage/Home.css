@@ -21,7 +21,12 @@ body{
 
 }
 
-.busdiv {
+/* .busdiv img{
+  width: 500px;
+  height: 500px;
+} */
+
+  .busdiv {
   /* background-color: white; */
   opacity: .8;
   border: 1px solid rgb(184, 184, 8);
@@ -29,28 +34,31 @@ body{
   padding: 20px;
   transition-property: background-color;
   transition-delay: 0s;
-  }
+  /* background-image: ; */
+}
 
   .busdiv:hover{
     background-color: rgb(184, 184, 8);
     opacity: .8;
     margin: 10px;
-  }
+}
 
   .busname{
     color: white;
     font:large bolder;
     list-style-type: none;
-  }
-
-
+    font-size: 30px;
+}
+  
+  
   .grid-container a{
     text-decoration: none;
-  }
-
+}
+  
 .busdes {
   list-style-type: none;
   color: white;
+  font-size: 20px;
 }
 
 .busadd {
@@ -63,6 +71,10 @@ body{
 } 
 
 .image{
-  height: 150px;
-  width: 300px;
+  height: 300px;
+  width: 500px;
+}
+
+.divpart{
+  position:relative;
 }
