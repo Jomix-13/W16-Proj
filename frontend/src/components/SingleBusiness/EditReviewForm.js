@@ -16,7 +16,7 @@ const EditReviewForm = ({ revieww, hideForm}) => {
 
   useEffect(() => {
     const errorHandler=[]
-    if(!review) errorHandler.push('Please enter your review')
+    if(!review) errorHandler.push('Review can not be blank')
     if(review.length < 10) errorHandler.push('Your review needs to be more than 10 charachters')
     if(rating < 1 || rating > 5 || !rating ) errorHandler.push('Rating value must be between 1-5')
     setErrors(errorHandler)

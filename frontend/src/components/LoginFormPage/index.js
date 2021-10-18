@@ -30,6 +30,7 @@ useEffect(()=>{
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    history.push('/home')
     return dispatch(sessionActions.loginUser({ credential, password }))
       .catch(async (res) => {
         const data = await res.json();

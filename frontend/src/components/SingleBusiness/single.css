@@ -195,12 +195,13 @@
     /* box-sizing: border-box; */
 }
 
-/* .btns{
-    padding-left: 50px;
+.btns{
+    /* padding-left: 50px; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-} */
+    align-items: center;
+}
 
 #buts2{
     margin-left: 50px;

@@ -44,55 +44,15 @@ const SplashPage = () =>{
 
 return (
     <div>
-        <div className='slogen'>
+        {/* <div className='slogen'>
         Find the Best Businesses in Town
-        </div>
+        </div> */}
         <div className='logoimg'>
             <img src='https://i.imgur.com/Xq6DdgH.png' alt=""/>
         </div>
             <div className='i'>
         </div>
     </div>
-//         <>
-//         <div className='All'>
-//             <div className="hwrap2">
-//                 <div className="hmove2">
-//                 <div className="hitem2">
-//                     <div>
-//                         THE WAY YOU FIND YOUR HOME.
-//                     </div>
-//                 </div>
-//                 </div>
-//             </div>
-//         </div>
-//             <div className='searchbar'>
-//                 {/* <input type="text"  onkeyup="myFunction()" placeholder="Search... "/> */}
-//                 <form onSubmit={onSubmit}>
-//                     <input
-//                         id="myInput"
-//                         className='nav-search-input'
-//                         type='text'
-//                         name='search'
-//                         value={search}
-//                         onChange={(e) => setSearch(e.target.value)}
-//                         placeholder='Search...'>
-//                     </input>
-//                     {search &&
-//                         <select className='search-results' onChange={toPage} size={searchHomes.length + searchCity.length + 2}>
-//                                 <option className='search-results-title'>({searchHomes.length + searchCity.length} results)</option>
-//                             {searchHomes.map(home => (
-//                                 <option key={home.id} value={'home' + home.id}>{home.stAddress}, {home.city}, {home.state}, {home.Zipcode}</option>
-//                             ))}
-//                                 {/* <option className='search-results-title'>Search Cities Results ({searchCity.length})</option> */}
-//                             {searchCity.map(home => (
-//                                 <option key={home.id} value={'home' + home.id}>{home.stAddress}, {home.city}, {home.state}, {home.Zipcode}</option>
-//                             ))}
-//                         </select>
-//                     }
-//                 </form>
-//             </div>
-//         </div>
-//         </>
     )
 }
 

@@ -4,7 +4,8 @@ import {useState} from 'react'
 // import {DeleteReview} from '../../store/0review'
 import {getReviews,DeleteReview} from '../../store/0review'
 
-import EditReviewForm from '../SingleBusiness/EditReviewForm'
+// import EditReviewForm from '../SingleBusiness/EditReviewForm'
+import EditReviewFormModal from '../EditCommentModal'
 import { useHistory } from 'react-router'
 import { Link, NavLink } from 'react-router-dom'
 
@@ -65,7 +66,9 @@ function SingelReview({review}){
             }>
                 Delete
             </button>
-            <button
+            <EditReviewFormModal id={rev.id}/>
+
+            {/* <button
                 id='buts2'
                 onClick={() => {
                     setShowEditReviewForm(true)
@@ -74,14 +77,14 @@ function SingelReview({review}){
                 }}
             >
                 Edit
-            </button>
+            </button> */}
             </div>
-            <div className='editForm'>
+            {/* <div className='editForm'>
                 {showEditReviewForm && editClicked && rev.id === targetId ?
                 <EditReviewForm revieww={rev} hideForm={setShowEditReviewForm}/>
                 : null
             }
-            </div>
+            </div> */}
           </div>
             : null
             }
