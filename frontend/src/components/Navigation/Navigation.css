@@ -114,7 +114,7 @@ button:hover {
 
 #myInput2 {
   background-repeat: no-repeat; 
-  width: 700px; /* Full-width */
+  width: 500px; /* Full-width */
   font-size: 17px; /* Increase font-size */
   border: 2px solid #ddd; /* Add a grey border */
   /* background-color: rgba(126, 163, 187);; */
@@ -134,11 +134,11 @@ button:hover {
 }
 .search-results2 {
   position: absolute;
-  left: 1060px;
+  left: 900px;
   top: 85px;
   border-radius: 20px;
   padding: 10px;
-  width: 700px;
+  width: 500px;
   font-family: "Prompt";
   font-size: 16px;
   z-index: 1;
