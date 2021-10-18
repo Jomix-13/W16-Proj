@@ -41,7 +41,7 @@ function SingelReview({review}){
             // <div className='review'>{rev.answer}</div>
             // )
           rev?.businessId === business?.id ? 
-          <div className='review'>
+          <div key={rev.id} className='review'>
             <div className='user'>
                 {/* <div className='starz'> */}
                 {rev?.User?.username}

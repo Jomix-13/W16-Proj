@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
-// import * as NewBusiness from '../../store/business'
 import {addBusiness} from '../../store/0business'
 
 const STATES =[
@@ -84,7 +83,7 @@ function NewBusinessForm() {
         if(!zipCode.length || zipCode.length !== 5) errorHandler.push('please enter valid Zip Code')
 
         setErrors(errorHandler)
-    },[title,description,address,city,zipCode])
+    },[title,description,address,city,zipCode,image.length])
 
 
     const handleSubmit = () => {
@@ -104,7 +103,6 @@ function NewBusinessForm() {
                     <li key={error}>{error}</li>
                 ))}
                 </ul>
-                {/* <div className='try'> */}
                 <div className='loginLablediv'>
                 <label className='loginLable'> Business Name </label>
                     <input

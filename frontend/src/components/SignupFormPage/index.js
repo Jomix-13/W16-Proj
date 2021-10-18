@@ -45,10 +45,8 @@ function SignupFormPage() {
       <div className='ediv2'>
       <ul className='error'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
       </ul>
       </div>
-      {/* <div className='inputdiv'> */}
       <div className='loginLablediv'>
       <label className='loginLable'>
         Email

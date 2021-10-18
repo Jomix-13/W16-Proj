@@ -1,26 +1,20 @@
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import {SingleBusinesses, getBusinesses} from '../../store/0business'
-import {useParams} from 'react-router-dom'
+import {SingleBusinesses} from '../../store/0business'
 
 
-// import { useDispatch } from 'react-redux';
-// import * as sessionActions from '../../store/session';
+
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
-  // const dispatch = useDispatch();
   const dispatch = useDispatch();
 
   const sessionUser = useSelector(state => state.session.user);
-  // const logout = (e) => {
-  //   e.preventDefault();
-  //   dispatch(sessionActions.logoutUser());
-  // };
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -38,16 +32,6 @@ function Navigation({ isLoaded }){
       </div>
     );
   }
-  // const business = useSelector(state => state.business.oneBusiness);
-  // let businessId = business.id 
-
-  // // const {businessId} = useParams()
-  // console.log(businessId)
-
-  // useEffect(() => {
-  //   dispatch(SingleBusinesses(businessId))
-  //   dispatch(getBusinesses())
-  // }, [dispatch,businessId]);
 
   let history = useHistory()
   const [search, setSearch] = useState("");
@@ -69,13 +53,11 @@ function Navigation({ isLoaded }){
   } 
 
   const toPage = (e) => {
-    // console.log('>>>>>>>>>>>>>>>>>>>>>',e.target.value)
     e.preventDefault();
       if(e.target.value.includes('business')) {
         
         setSearch('')
         const businessId = (e.target.value.slice(8))
-        // console.log('>>>>>>>>>>>>>>>>>>>>>',businessId)
         dispatch(SingleBusinesses(businessId))
         return history.push(`/${businessId}`);
     } 
@@ -98,7 +80,6 @@ function Navigation({ isLoaded }){
           </div>
         </div>
         :
-        // <ProfileButton className='topnav2' user={sessionUser}/>
         <div className='navbutts2'>
           <div className='topnav'>
               <button onClick={logout}>Log Out</button>
@@ -115,8 +96,7 @@ function Navigation({ isLoaded }){
           </div>
           : 
           <div className='username'></div>}
-      {/* <div> */}
-        {/* <input className='searchinput' type="text" placeholder="Search.."/> */}
+
 
         <div className='i2'>
             <div className='searchbar2'>
@@ -149,7 +129,6 @@ function Navigation({ isLoaded }){
                 </form>
             </div>
         </div>
-      {/* </div> */}
     </div>
   );
 }
