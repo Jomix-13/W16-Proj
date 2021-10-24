@@ -75,7 +75,7 @@ function OneBusiness(){
   }
 
   return(
-    <>
+    <div className='TEST'>
       {!!business &&(
         <div>
           <div className='infoContainer'>
@@ -144,7 +144,7 @@ function OneBusiness(){
 
         </div>
       )}
-    </>
+    </div>
   )
 }
 

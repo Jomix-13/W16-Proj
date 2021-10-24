@@ -18,8 +18,8 @@
 .footer-data {
 	color: white;
 	font-weight: 100;
-	font-size: small;
-	padding: 10px 10px;
+	font-size:smaller;
+	/* padding: 5px 5px; */
 }
 
 /* .footer-links-container {
@@ -43,7 +43,7 @@
 
 .footer-name {
 	color: white;
-	font-size: 25px;
+	font-size: 15px;
 }
 .footer-name a{
 	color: white;
@@ -52,7 +52,7 @@
 .footer-div {
 	display: flex;
 	flex-direction: column;
-	margin: 20px;
+	margin: 10px;
 }
 
 .footer-links {
@@ -63,11 +63,11 @@
 }
 
 .footer-title {
-	margin-top: 30px;
+	margin-top: 10px;
 	color: white;
 	text-align: center;
 	font-size: larger;
-	margin-bottom: 10px;
+	/* margin-bottom: 1px; */
 }
 
 i {

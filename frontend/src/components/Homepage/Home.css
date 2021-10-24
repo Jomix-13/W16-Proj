@@ -18,7 +18,9 @@ body{
     border: 1px solid;
     border-radius: 15px;
     padding: 20px;
-
+    width: 95vw;
+    overflow: scroll;
+    height: 65vh;
 }
 
 /* .busdiv img{
@@ -26,7 +28,7 @@ body{
   height: 500px;
 } */
 
-  .busdiv {
+.busdiv {
   /* background-color: white; */
   opacity: .8;
   border: 1px solid rgb(184, 184, 8);
@@ -34,6 +36,7 @@ body{
   padding: 20px;
   transition-property: background-color;
   transition-delay: 0s;
+  width: 28vw;
   /* background-image: ; */
 }
 
@@ -47,7 +50,7 @@ body{
     color: white;
     font:large bolder;
     list-style-type: none;
-    font-size: 30px;
+    font-size: 20px;
 }
   
   
@@ -58,12 +61,13 @@ body{
 .busdes {
   list-style-type: none;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .busadd {
   list-style-type: none;
   color: white;
+  font-size: 15px;
 } 
 .busadd2 {
   list-style-type: none;
@@ -71,8 +75,8 @@ body{
 } 
 
 .image{
-  height: 300px;
-  width: 500px;
+  height: 25vh;
+  width: 28vw;
 }
 
 .divpart{

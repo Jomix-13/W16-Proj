@@ -18,15 +18,15 @@ const FooterNav = () => {
                     </div>
                     <div className="footer-links">
                       <a href="mailto:john.wanis@yahoo.com" target="_blank" rel="noreferrer">
-                        <i className="far fa-envelope fa-lg" />
+                        <i className="far fa-envelope fa-sm" />
                       </a>
                       &nbsp;
                       <a href="https://github.com/Jomix-13" target="_blank" rel="noreferrer">
-                        <i className="fab fa-github fa-lg" />
+                        <i className="fab fa-github fa-sm" />
                       </a>
                       &nbsp;
                       <a href="https://www.linkedin.com/in/john-wanis-764957138/" target="_blank" rel="noreferrer">
-                        <i className="fab fa-linkedin fa-lg" />
+                        <i className="fab fa-linkedin fa-sm" />
                       </a>
                     </div>
                 </div>
