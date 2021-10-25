@@ -154,7 +154,7 @@ print('add code snippet 1 here')
 
 ## Contact
 
-### {Your Name}
+### John Wanis
 <a href="https://www.linkedin.com/in/john-wanis-764957138/"><img src="./readme-assets/logos/linkedin-logo.png" height="28" align="middle" /></a>
 <a href="https://angel.co/u/john-wanis-1"><img src="./readme-assets/logos/angellist-logo.png" height="28" align="middle" /></a>
 <a href="https://github.com/jomix-13"><img src="./readme-assets/logos/github-logo.png" height="38" align="middle" /></a>
